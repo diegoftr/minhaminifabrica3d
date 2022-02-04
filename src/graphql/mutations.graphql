@@ -1,0 +1,580 @@
+# this is an auto generated file. This will be overwritten
+mutation CreateEnderecos(
+  $input: CreateEnderecosInput!
+  $condition: ModelEnderecosConditionInput
+) {
+  createEnderecos(input: $input, condition: $condition) {
+    id
+    numCEP
+    numero
+    complemento
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation UpdateEnderecos(
+  $input: UpdateEnderecosInput!
+  $condition: ModelEnderecosConditionInput
+) {
+  updateEnderecos(input: $input, condition: $condition) {
+    id
+    numCEP
+    numero
+    complemento
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation DeleteEnderecos(
+  $input: DeleteEnderecosInput!
+  $condition: ModelEnderecosConditionInput
+) {
+  deleteEnderecos(input: $input, condition: $condition) {
+    id
+    numCEP
+    numero
+    complemento
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation CreateUsuarios(
+  $input: CreateUsuariosInput!
+  $condition: ModelUsuariosConditionInput
+) {
+  createUsuarios(input: $input, condition: $condition) {
+    id
+    cpf
+    nome
+    email
+    endereco {
+      id
+      numCEP
+      numero
+      complemento
+      createdAt
+      updatedAt
+      owner
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation UpdateUsuarios(
+  $input: UpdateUsuariosInput!
+  $condition: ModelUsuariosConditionInput
+) {
+  updateUsuarios(input: $input, condition: $condition) {
+    id
+    cpf
+    nome
+    email
+    endereco {
+      id
+      numCEP
+      numero
+      complemento
+      createdAt
+      updatedAt
+      owner
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation DeleteUsuarios(
+  $input: DeleteUsuariosInput!
+  $condition: ModelUsuariosConditionInput
+) {
+  deleteUsuarios(input: $input, condition: $condition) {
+    id
+    cpf
+    nome
+    email
+    endereco {
+      id
+      numCEP
+      numero
+      complemento
+      createdAt
+      updatedAt
+      owner
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation CreateOrcamentos(
+  $input: CreateOrcamentosInput!
+  $condition: ModelOrcamentosConditionInput
+) {
+  createOrcamentos(input: $input, condition: $condition) {
+    id
+    arquivo {
+      bucket
+      key
+      region
+    }
+    titulo
+    escala
+    verniz
+    Tecnologia {
+      id
+      descricao
+      createdAt
+      updatedAt
+    }
+    Material {
+      id
+      descricao
+      createdAt
+      updatedAt
+    }
+    Acabamento {
+      id
+      descricao
+      createdAt
+      updatedAt
+    }
+    Cor {
+      id
+      descricao
+      createdAt
+      updatedAt
+    }
+    situacao
+    Proposta {
+      items {
+        id
+        prazo
+        valor
+        frete
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation UpdateOrcamentos(
+  $input: UpdateOrcamentosInput!
+  $condition: ModelOrcamentosConditionInput
+) {
+  updateOrcamentos(input: $input, condition: $condition) {
+    id
+    arquivo {
+      bucket
+      key
+      region
+    }
+    titulo
+    escala
+    verniz
+    Tecnologia {
+      id
+      descricao
+      createdAt
+      updatedAt
+    }
+    Material {
+      id
+      descricao
+      createdAt
+      updatedAt
+    }
+    Acabamento {
+      id
+      descricao
+      createdAt
+      updatedAt
+    }
+    Cor {
+      id
+      descricao
+      createdAt
+      updatedAt
+    }
+    situacao
+    Proposta {
+      items {
+        id
+        prazo
+        valor
+        frete
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation DeleteOrcamentos(
+  $input: DeleteOrcamentosInput!
+  $condition: ModelOrcamentosConditionInput
+) {
+  deleteOrcamentos(input: $input, condition: $condition) {
+    id
+    arquivo {
+      bucket
+      key
+      region
+    }
+    titulo
+    escala
+    verniz
+    Tecnologia {
+      id
+      descricao
+      createdAt
+      updatedAt
+    }
+    Material {
+      id
+      descricao
+      createdAt
+      updatedAt
+    }
+    Acabamento {
+      id
+      descricao
+      createdAt
+      updatedAt
+    }
+    Cor {
+      id
+      descricao
+      createdAt
+      updatedAt
+    }
+    situacao
+    Proposta {
+      items {
+        id
+        prazo
+        valor
+        frete
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation CreatePropostas(
+  $input: CreatePropostasInput!
+  $condition: ModelPropostasConditionInput
+) {
+  createPropostas(input: $input, condition: $condition) {
+    id
+    Orcamento {
+      id
+      arquivo {
+        bucket
+        key
+        region
+      }
+      titulo
+      escala
+      verniz
+      Tecnologia {
+        id
+        descricao
+        createdAt
+        updatedAt
+      }
+      Material {
+        id
+        descricao
+        createdAt
+        updatedAt
+      }
+      Acabamento {
+        id
+        descricao
+        createdAt
+        updatedAt
+      }
+      Cor {
+        id
+        descricao
+        createdAt
+        updatedAt
+      }
+      situacao
+      Proposta {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+    prazo
+    valor
+    frete
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation UpdatePropostas(
+  $input: UpdatePropostasInput!
+  $condition: ModelPropostasConditionInput
+) {
+  updatePropostas(input: $input, condition: $condition) {
+    id
+    Orcamento {
+      id
+      arquivo {
+        bucket
+        key
+        region
+      }
+      titulo
+      escala
+      verniz
+      Tecnologia {
+        id
+        descricao
+        createdAt
+        updatedAt
+      }
+      Material {
+        id
+        descricao
+        createdAt
+        updatedAt
+      }
+      Acabamento {
+        id
+        descricao
+        createdAt
+        updatedAt
+      }
+      Cor {
+        id
+        descricao
+        createdAt
+        updatedAt
+      }
+      situacao
+      Proposta {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+    prazo
+    valor
+    frete
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation DeletePropostas(
+  $input: DeletePropostasInput!
+  $condition: ModelPropostasConditionInput
+) {
+  deletePropostas(input: $input, condition: $condition) {
+    id
+    Orcamento {
+      id
+      arquivo {
+        bucket
+        key
+        region
+      }
+      titulo
+      escala
+      verniz
+      Tecnologia {
+        id
+        descricao
+        createdAt
+        updatedAt
+      }
+      Material {
+        id
+        descricao
+        createdAt
+        updatedAt
+      }
+      Acabamento {
+        id
+        descricao
+        createdAt
+        updatedAt
+      }
+      Cor {
+        id
+        descricao
+        createdAt
+        updatedAt
+      }
+      situacao
+      Proposta {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+    prazo
+    valor
+    frete
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation CreateCores(
+  $input: CreateCoresInput!
+  $condition: ModelCoresConditionInput
+) {
+  createCores(input: $input, condition: $condition) {
+    id
+    descricao
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateCores(
+  $input: UpdateCoresInput!
+  $condition: ModelCoresConditionInput
+) {
+  updateCores(input: $input, condition: $condition) {
+    id
+    descricao
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteCores(
+  $input: DeleteCoresInput!
+  $condition: ModelCoresConditionInput
+) {
+  deleteCores(input: $input, condition: $condition) {
+    id
+    descricao
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateAcabamentos(
+  $input: CreateAcabamentosInput!
+  $condition: ModelAcabamentosConditionInput
+) {
+  createAcabamentos(input: $input, condition: $condition) {
+    id
+    descricao
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateAcabamentos(
+  $input: UpdateAcabamentosInput!
+  $condition: ModelAcabamentosConditionInput
+) {
+  updateAcabamentos(input: $input, condition: $condition) {
+    id
+    descricao
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteAcabamentos(
+  $input: DeleteAcabamentosInput!
+  $condition: ModelAcabamentosConditionInput
+) {
+  deleteAcabamentos(input: $input, condition: $condition) {
+    id
+    descricao
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateMateriais(
+  $input: CreateMateriaisInput!
+  $condition: ModelMateriaisConditionInput
+) {
+  createMateriais(input: $input, condition: $condition) {
+    id
+    descricao
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateMateriais(
+  $input: UpdateMateriaisInput!
+  $condition: ModelMateriaisConditionInput
+) {
+  updateMateriais(input: $input, condition: $condition) {
+    id
+    descricao
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteMateriais(
+  $input: DeleteMateriaisInput!
+  $condition: ModelMateriaisConditionInput
+) {
+  deleteMateriais(input: $input, condition: $condition) {
+    id
+    descricao
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateTecnologias(
+  $input: CreateTecnologiasInput!
+  $condition: ModelTecnologiasConditionInput
+) {
+  createTecnologias(input: $input, condition: $condition) {
+    id
+    descricao
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateTecnologias(
+  $input: UpdateTecnologiasInput!
+  $condition: ModelTecnologiasConditionInput
+) {
+  updateTecnologias(input: $input, condition: $condition) {
+    id
+    descricao
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteTecnologias(
+  $input: DeleteTecnologiasInput!
+  $condition: ModelTecnologiasConditionInput
+) {
+  deleteTecnologias(input: $input, condition: $condition) {
+    id
+    descricao
+    createdAt
+    updatedAt
+  }
+}

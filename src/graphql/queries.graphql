@@ -1,0 +1,354 @@
+# this is an auto generated file. This will be overwritten
+query GetEnderecos($id: ID!) {
+  getEnderecos(id: $id) {
+    id
+    numCEP
+    numero
+    complemento
+    createdAt
+    updatedAt
+    owner
+  }
+}
+query ListEnderecos(
+  $filter: ModelEnderecosFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listEnderecos(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      numCEP
+      numero
+      complemento
+      createdAt
+      updatedAt
+      owner
+    }
+    nextToken
+  }
+}
+query GetUsuarios($id: ID!) {
+  getUsuarios(id: $id) {
+    id
+    cpf
+    nome
+    email
+    endereco {
+      id
+      numCEP
+      numero
+      complemento
+      createdAt
+      updatedAt
+      owner
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+query ListUsuarios(
+  $filter: ModelUsuariosFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listUsuarios(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      cpf
+      nome
+      email
+      endereco {
+        id
+        numCEP
+        numero
+        complemento
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+    nextToken
+  }
+}
+query GetOrcamentos($id: ID!) {
+  getOrcamentos(id: $id) {
+    id
+    arquivo {
+      bucket
+      key
+      region
+    }
+    titulo
+    escala
+    verniz
+    Tecnologia {
+      id
+      descricao
+      createdAt
+      updatedAt
+    }
+    Material {
+      id
+      descricao
+      createdAt
+      updatedAt
+    }
+    Acabamento {
+      id
+      descricao
+      createdAt
+      updatedAt
+    }
+    Cor {
+      id
+      descricao
+      createdAt
+      updatedAt
+    }
+    situacao
+    Proposta {
+      items {
+        id
+        prazo
+        valor
+        frete
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+query ListOrcamentos(
+  $filter: ModelOrcamentosFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listOrcamentos(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      arquivo {
+        bucket
+        key
+        region
+      }
+      titulo
+      escala
+      verniz
+      Tecnologia {
+        id
+        descricao
+        createdAt
+        updatedAt
+      }
+      Material {
+        id
+        descricao
+        createdAt
+        updatedAt
+      }
+      Acabamento {
+        id
+        descricao
+        createdAt
+        updatedAt
+      }
+      Cor {
+        id
+        descricao
+        createdAt
+        updatedAt
+      }
+      situacao
+      Proposta {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+    nextToken
+  }
+}
+query GetPropostas($id: ID!) {
+  getPropostas(id: $id) {
+    id
+    Orcamento {
+      id
+      arquivo {
+        bucket
+        key
+        region
+      }
+      titulo
+      escala
+      verniz
+      Tecnologia {
+        id
+        descricao
+        createdAt
+        updatedAt
+      }
+      Material {
+        id
+        descricao
+        createdAt
+        updatedAt
+      }
+      Acabamento {
+        id
+        descricao
+        createdAt
+        updatedAt
+      }
+      Cor {
+        id
+        descricao
+        createdAt
+        updatedAt
+      }
+      situacao
+      Proposta {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+    prazo
+    valor
+    frete
+    createdAt
+    updatedAt
+    owner
+  }
+}
+query ListPropostas(
+  $filter: ModelPropostasFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listPropostas(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      Orcamento {
+        id
+        titulo
+        escala
+        verniz
+        situacao
+        createdAt
+        updatedAt
+        owner
+      }
+      prazo
+      valor
+      frete
+      createdAt
+      updatedAt
+      owner
+    }
+    nextToken
+  }
+}
+query GetCores($id: ID!) {
+  getCores(id: $id) {
+    id
+    descricao
+    createdAt
+    updatedAt
+  }
+}
+query ListCores(
+  $filter: ModelCoresFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listCores(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      descricao
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetAcabamentos($id: ID!) {
+  getAcabamentos(id: $id) {
+    id
+    descricao
+    createdAt
+    updatedAt
+  }
+}
+query ListAcabamentos(
+  $filter: ModelAcabamentosFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listAcabamentos(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      descricao
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetMateriais($id: ID!) {
+  getMateriais(id: $id) {
+    id
+    descricao
+    createdAt
+    updatedAt
+  }
+}
+query ListMateriais(
+  $filter: ModelMateriaisFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listMateriais(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      descricao
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetTecnologias($id: ID!) {
+  getTecnologias(id: $id) {
+    id
+    descricao
+    createdAt
+    updatedAt
+  }
+}
+query ListTecnologias(
+  $filter: ModelTecnologiasFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listTecnologias(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      descricao
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}

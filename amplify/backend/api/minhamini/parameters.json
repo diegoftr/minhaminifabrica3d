@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "minhamini",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authminhaminifabrica3dap5217775b",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

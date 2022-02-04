@@ -1,1 +1,46 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    font-family: 'Trebuchet MS', sans-serif;
+}
+
+:root{
+    --amplify-primary-color: #afcb08;
+    --amplify-primary-tint: #a8b176;
+    --amplify-primary-shade: #c6e709;
+  }
+  
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.botao {
+  color: white;background-color: rgb(175, 203, 8);
+}
+
+html{
+    padding-left: 280px;
+    padding-right: 280px;
+}
+
+button{
+    display: block;
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    outline: none;
+    width: 211px;
+    height: 56px;
+    min-height: 33px;
+    min-width: 40px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(3, 3, 3);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 13px;
+    padding: 0px;
+    border-radius: 0px;
+    border: 0px;
+}

@@ -1,0 +1,508 @@
+# this is an auto generated file. This will be overwritten
+subscription OnCreateEnderecos($owner: String) {
+  onCreateEnderecos(owner: $owner) {
+    id
+    numCEP
+    numero
+    complemento
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnUpdateEnderecos($owner: String) {
+  onUpdateEnderecos(owner: $owner) {
+    id
+    numCEP
+    numero
+    complemento
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnDeleteEnderecos($owner: String) {
+  onDeleteEnderecos(owner: $owner) {
+    id
+    numCEP
+    numero
+    complemento
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnCreateUsuarios($owner: String) {
+  onCreateUsuarios(owner: $owner) {
+    id
+    cpf
+    nome
+    email
+    endereco {
+      id
+      numCEP
+      numero
+      complemento
+      createdAt
+      updatedAt
+      owner
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnUpdateUsuarios($owner: String) {
+  onUpdateUsuarios(owner: $owner) {
+    id
+    cpf
+    nome
+    email
+    endereco {
+      id
+      numCEP
+      numero
+      complemento
+      createdAt
+      updatedAt
+      owner
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnDeleteUsuarios($owner: String) {
+  onDeleteUsuarios(owner: $owner) {
+    id
+    cpf
+    nome
+    email
+    endereco {
+      id
+      numCEP
+      numero
+      complemento
+      createdAt
+      updatedAt
+      owner
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnCreateOrcamentos($owner: String) {
+  onCreateOrcamentos(owner: $owner) {
+    id
+    arquivo {
+      bucket
+      key
+      region
+    }
+    titulo
+    escala
+    verniz
+    Tecnologia {
+      id
+      descricao
+      createdAt
+      updatedAt
+    }
+    Material {
+      id
+      descricao
+      createdAt
+      updatedAt
+    }
+    Acabamento {
+      id
+      descricao
+      createdAt
+      updatedAt
+    }
+    Cor {
+      id
+      descricao
+      createdAt
+      updatedAt
+    }
+    situacao
+    Proposta {
+      items {
+        id
+        prazo
+        valor
+        frete
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnUpdateOrcamentos($owner: String) {
+  onUpdateOrcamentos(owner: $owner) {
+    id
+    arquivo {
+      bucket
+      key
+      region
+    }
+    titulo
+    escala
+    verniz
+    Tecnologia {
+      id
+      descricao
+      createdAt
+      updatedAt
+    }
+    Material {
+      id
+      descricao
+      createdAt
+      updatedAt
+    }
+    Acabamento {
+      id
+      descricao
+      createdAt
+      updatedAt
+    }
+    Cor {
+      id
+      descricao
+      createdAt
+      updatedAt
+    }
+    situacao
+    Proposta {
+      items {
+        id
+        prazo
+        valor
+        frete
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnDeleteOrcamentos($owner: String) {
+  onDeleteOrcamentos(owner: $owner) {
+    id
+    arquivo {
+      bucket
+      key
+      region
+    }
+    titulo
+    escala
+    verniz
+    Tecnologia {
+      id
+      descricao
+      createdAt
+      updatedAt
+    }
+    Material {
+      id
+      descricao
+      createdAt
+      updatedAt
+    }
+    Acabamento {
+      id
+      descricao
+      createdAt
+      updatedAt
+    }
+    Cor {
+      id
+      descricao
+      createdAt
+      updatedAt
+    }
+    situacao
+    Proposta {
+      items {
+        id
+        prazo
+        valor
+        frete
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnCreatePropostas($owner: String) {
+  onCreatePropostas(owner: $owner) {
+    id
+    Orcamento {
+      id
+      arquivo {
+        bucket
+        key
+        region
+      }
+      titulo
+      escala
+      verniz
+      Tecnologia {
+        id
+        descricao
+        createdAt
+        updatedAt
+      }
+      Material {
+        id
+        descricao
+        createdAt
+        updatedAt
+      }
+      Acabamento {
+        id
+        descricao
+        createdAt
+        updatedAt
+      }
+      Cor {
+        id
+        descricao
+        createdAt
+        updatedAt
+      }
+      situacao
+      Proposta {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+    prazo
+    valor
+    frete
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnUpdatePropostas($owner: String) {
+  onUpdatePropostas(owner: $owner) {
+    id
+    Orcamento {
+      id
+      arquivo {
+        bucket
+        key
+        region
+      }
+      titulo
+      escala
+      verniz
+      Tecnologia {
+        id
+        descricao
+        createdAt
+        updatedAt
+      }
+      Material {
+        id
+        descricao
+        createdAt
+        updatedAt
+      }
+      Acabamento {
+        id
+        descricao
+        createdAt
+        updatedAt
+      }
+      Cor {
+        id
+        descricao
+        createdAt
+        updatedAt
+      }
+      situacao
+      Proposta {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+    prazo
+    valor
+    frete
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnDeletePropostas($owner: String) {
+  onDeletePropostas(owner: $owner) {
+    id
+    Orcamento {
+      id
+      arquivo {
+        bucket
+        key
+        region
+      }
+      titulo
+      escala
+      verniz
+      Tecnologia {
+        id
+        descricao
+        createdAt
+        updatedAt
+      }
+      Material {
+        id
+        descricao
+        createdAt
+        updatedAt
+      }
+      Acabamento {
+        id
+        descricao
+        createdAt
+        updatedAt
+      }
+      Cor {
+        id
+        descricao
+        createdAt
+        updatedAt
+      }
+      situacao
+      Proposta {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+    prazo
+    valor
+    frete
+    createdAt
+    updatedAt
+    owner
+  }
+}
+subscription OnCreateCores {
+  onCreateCores {
+    id
+    descricao
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateCores {
+  onUpdateCores {
+    id
+    descricao
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteCores {
+  onDeleteCores {
+    id
+    descricao
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateAcabamentos {
+  onCreateAcabamentos {
+    id
+    descricao
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateAcabamentos {
+  onUpdateAcabamentos {
+    id
+    descricao
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteAcabamentos {
+  onDeleteAcabamentos {
+    id
+    descricao
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateMateriais {
+  onCreateMateriais {
+    id
+    descricao
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateMateriais {
+  onUpdateMateriais {
+    id
+    descricao
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteMateriais {
+  onDeleteMateriais {
+    id
+    descricao
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateTecnologias {
+  onCreateTecnologias {
+    id
+    descricao
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateTecnologias {
+  onUpdateTecnologias {
+    id
+    descricao
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteTecnologias {
+  onDeleteTecnologias {
+    id
+    descricao
+    createdAt
+    updatedAt
+  }
+}

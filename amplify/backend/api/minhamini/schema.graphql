@@ -1,0 +1,126 @@
+type Enderecos @model 
+@key(name: "byEndereco", fields: ["id"])
+@auth(
+    rules: [
+      { allow: owner }
+      { allow: groups, groups: ["admin"]}
+    ]
+ ){
+  id: ID!
+  numCEP: Int!
+  numero: Int!
+  complemento: String!
+}
+
+type Usuarios @model @key(name: "byUsuarios", fields: ["id"])
+@auth(
+    rules: [
+      { allow: owner }
+      { allow: groups, groups: ["admin"]}
+    ]
+ ){
+  id: ID!
+  cpf: String!
+  nome: String!
+  email: String!
+  endereco: Enderecos @connection
+}
+
+type Orcamentos @model 
+@key(name: "byOrcamento", fields: ["id"])
+@auth(
+    rules: [
+      { allow: owner }
+      { allow: groups, groups: ["admin"]}
+    ]
+ ){
+  id: ID!
+  arquivo: S3Object!
+  titulo: String!
+  escala: Int!
+  verniz: Boolean!
+  Tecnologia: Tecnologias @connection
+  Material: Materiais @connection
+  Acabamento: Acabamentos @connection
+  Cor: Cores @connection
+  situacao: SituacaoOrcamento!
+  Proposta: [Propostas] @connection
+}
+
+type Propostas @model 
+@key(name: "byProposta", fields: ["id"])
+@auth(
+    rules: [
+      { allow: owner }
+      { allow: groups, groups: ["admin"]}
+    ]
+ ){
+  id: ID!
+  Orcamento: Orcamentos @connection
+  prazo: String!
+  valor: String!
+  frete: String!
+}
+
+type Cores @model 
+@key(name: "byCor", fields: ["id"])
+@auth(
+    rules: [
+      { allow: groups, groups: ["admin"]}
+    ]
+ ){
+  id: ID!
+  descricao: String!
+}
+
+type Acabamentos @model 
+@key(name: "byAcabamento", fields: ["id"])
+@auth(
+    rules: [
+      { allow: groups, groups: ["admin"]}
+    ]
+ ){
+  id: ID!
+  descricao: String!
+}
+
+type Materiais @model 
+@key(name: "byMaterial", fields: ["id"])
+@auth(
+    rules: [
+      { allow: groups, groups: ["admin"]}
+    ]
+ ){
+  id: ID!
+  descricao: String!
+}
+
+type Tecnologias @model 
+@key(name: "byTecnologia", fields: ["id"])
+@auth(
+    rules: [
+      { allow: groups, groups: ["admin"]}
+    ]
+ ){
+  id: ID!
+  descricao: String!
+}
+
+type S3Object {
+    bucket: String!
+    key: String!
+    region: String!
+}
+
+input S3ObjectInput {
+    bucket: String!
+    key: String!
+    region: String!
+    localUri: String
+    mimeType: String
+}
+
+enum SituacaoOrcamento {
+  ATIVO
+  ENCERADO
+}

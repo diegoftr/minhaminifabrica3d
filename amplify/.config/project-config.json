@@ -1,0 +1,17 @@
+{
+  "projectName": "minhaminifabrica3dap",
+  "version": "3.1",
+  "frontend": "javascript",
+  "javascript": {
+    "framework": "angular",
+    "config": {
+      "SourceDir": "src",
+      "DistributionDir": "dist/minha-mini-fabrica-3d-app",
+      "BuildCommand": "npm.cmd run-script build",
+      "StartCommand": "ng serve"
+    }
+  },
+  "providers": [
+    "awscloudformation"
+  ]
+}
