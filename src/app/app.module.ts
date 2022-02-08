@@ -16,6 +16,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { OrcamentoComponent } from './solicitar-orcamento/solicitar-orcamento.component';
 import { LoginComponent } from './login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 @NgModule({
@@ -27,6 +29,12 @@ import { LoginComponent } from './login/login.component';
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    NgxSpinnerModule,
+    FormsModule,
+
+    MatMenuModule,
     AppRoutingModule,
     NgxSpinnerModule,
     AmplifyAuthenticatorModule,

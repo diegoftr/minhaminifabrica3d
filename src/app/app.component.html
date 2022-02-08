@@ -1,23 +1,40 @@
-<div class="cabecalho" >
+<amplify-authenticator style="display: none;">
+</amplify-authenticator>
+
+<div class="cabecalho">
   <div class="App">
     <mat-toolbar color="white" style="background-color: white; color: white;">
       <img src="/assets/minhaminifabrica.png" />
       <span style="flex: 0.2 0.2 auto;"></span>
       <a mat-button style="color: black;" (click)="acaoBtnInicio()">Início</a>&nbsp;
       <a mat-button style="color: black;" (click)="acaoBtnOrcamento()">Solicitar orçamento</a>
-      <a mat-button style="color: black;" (click)="irTelaRegras()">Meus orçamentos</a>
+      <a mat-button style="color: black;">Meus orçamentos</a>
       <span style="flex: 1 1 auto;"></span>
-      <a mat-button style="color: black;" (click)="irTelaRegras()">Login</a>
-      <!-- <amplify-sign-out></amplify-sign-out> -->
+      <a mat-button style="color: black;" *ngIf="authenticator.route === 'authenticated'" (click)="acaoBtnLogin()">Meus
+        Dados</a>
+
+        <a mat-button style="color: black;" *ngIf="group == 'admin'" [matMenuTriggerFor]="menu">Administrador</a>
+        <mat-menu #menu="matMenu">
+          <a mat-menu-item>Item 1</a>
+          <a mat-menu-item>Item 2</a>
+        </mat-menu>
+      
+      <a mat-button style="color: black;" *ngIf="authenticator.route !== 'authenticated'"
+        (click)="acaoBtnLogin()">Login</a>
+    
+      <a mat-button style="color: black;" *ngIf="authenticator.route === 'authenticated'"
+        (click)="authenticator.signOut()">Logout</a>
+
     </mat-toolbar>
   </div>
 </div>
-<div class="corpo" >
+<div class="corpo">
   <router-outlet></router-outlet>
 </div>
 <div class="rodape">
   <div style="width: 200px;">
-    <!-- <amplify-sign-out ></amplify-sign-out> -->
   </div>
 </div>
-<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "pacman" [fullScreen] = "true"><p style="color: white" > Carregando... </p></ngx-spinner>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="pacman" [fullScreen]="true">
+  <p style="color: white"> Carregando... </p>
+</ngx-spinner>

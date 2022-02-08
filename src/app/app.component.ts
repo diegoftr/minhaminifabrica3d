@@ -1,11 +1,9 @@
-import { Component, ChangeDetectorRef, NgZone } from '@angular/core';
-import { onAuthUIStateChange, CognitoUserInterface, AuthState, Translations } from '@aws-amplify/ui-components';
+import { Component } from '@angular/core';
 import { API, I18n } from 'aws-amplify';
-import { FormFieldTypes } from '@aws-amplify/ui-components';
 import awsconfig from '../aws-exports';
 import { Router } from '@angular/router';
-import { Location } from '@angular/common';
-import { NgxSpinnerService } from 'ngx-spinner';
+import { AuthenticatorService } from '@aws-amplify/ui-angular';
+import { Auth } from 'aws-amplify';
 
 API.configure(awsconfig);
 @Component({
@@ -14,20 +12,21 @@ API.configure(awsconfig);
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
-  user: CognitoUserInterface | undefined;
   group: String | undefined;
-  authState!: AuthState;
 
-  signUpFormFields: FormFieldTypes | undefined;
-  signInFormFields: FormFieldTypes | undefined;
 
-  constructor(private spinner: NgxSpinnerService, private _location: Location, private zone: NgZone
-    , private ref: ChangeDetectorRef, private router: Router) {
+  constructor(private router: Router, public authenticator: AuthenticatorService) {
     I18n.setLanguage('pt');
+    
   }
 
   ngOnInit() {
+    Auth.currentUserPoolUser()
+    .then(data => {
+      this.group = data.signInUserSession.accessToken.payload["cognito:groups"] != undefined ? data.signInUserSession.accessToken.payload["cognito:groups"][0] : '';
+    })
+    .catch(err => console.log(err));
+
     this.router.navigate(['/home']);
   }
 
@@ -35,17 +34,12 @@ export class AppComponent {
     this.router.navigate(['/orcamento']);
   }
 
-  irTelaRegras() {
-    this.zone.run(() => {
-      this.router.navigate(['/regras']);
-  });
+  acaoBtnLogin() {
+    this.router.navigate(['/login']);
   }
 
   acaoBtnInicio() {
       this.router.navigate(['/home']);
   }
 
-  ngOnDestroy() {
-    return onAuthUIStateChange;
-  }
 }

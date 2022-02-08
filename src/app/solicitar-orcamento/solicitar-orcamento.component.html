@@ -1,1 +1,12 @@
-<p>orcamento works!</p>
+
+<br>
+<form id="form" [formGroup]="form">
+<h1>Solicitar Orçamento</h1>
+<br>
+<div>
+    <mat-form-field [style.width.px]="256">
+        <mat-label><span>Titulo Solicitação</span></mat-label>
+        <input matInput type="string" maxlength="50" formControlName="titulo">
+    </mat-form-field>
+</div>
+</form>

@@ -1,3 +1,5 @@
+@import '~@aws-amplify/ui-angular/theme.css';
+
 body {
     font-family: 'Trebuchet MS', sans-serif;
 }
@@ -17,8 +19,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 html{
-    padding-left: 280px;
-    padding-right: 280px;
+    padding-left: 10%;
+    padding-right: 10%;
 }
 
 button{
@@ -43,4 +45,8 @@ button{
     padding: 0px;
     border-radius: 0px;
     border: 0px;
+}
+
+.amplify-button[data-variation='primary'] {
+  background: #33cbfd;
 }

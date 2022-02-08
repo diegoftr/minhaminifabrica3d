@@ -1,1 +1,25 @@
-<p>login works!</p>
+<!-- <amplify-authenticator *ngIf="authState !== 'signedin'">
+    <amplify-sign-in header-text="Bem vindo ao Bolão do Rezende" slot="sign-in" [formFields]="signInFormFields">
+    </amplify-sign-in>
+  
+    <amplify-sign-up slot="sign-up" usernameAlias="username" [formFields]="signUpFormFields"></amplify-sign-up>
+  
+</amplify-authenticator> -->
+<br><br>
+<amplify-authenticator [socialProviders]="['amazon', 'google']"
+  [signUpAttributes]="['address','email','name','phone_number']">
+  <ng-template amplifySlot="sign-up-form-fields">
+    <amplify-sign-up-form-fields></amplify-sign-up-form-fields>
+    <amplify-text-field label="Endereço" id="endereco" autocomplete="false" placeholder="Endereço" name="address"
+      type="text"></amplify-text-field>
+      
+
+  </ng-template>
+  <ng-template amplifySlot="authenticated" let-user="user" let-signOut="signOut">
+    <h1>Meus dados</h1>
+    <br>
+    <h2>Bem vindo, {{ user.username }}!</h2>
+    
+  </ng-template>
+  
+</amplify-authenticator>
