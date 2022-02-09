@@ -1,11 +1,10 @@
-import { Component, ChangeDetectorRef, NgZone } from '@angular/core';
-import { onAuthUIStateChange, CognitoUserInterface, AuthState, Translations } from '@aws-amplify/ui-components';
+import { Component} from '@angular/core';
+import { onAuthUIStateChange, CognitoUserInterface, Translations } from '@aws-amplify/ui-components';
 import { API, I18n } from 'aws-amplify';
 import { FormFieldTypes } from '@aws-amplify/ui-components';
 import awsconfig from '../../aws-exports';
-import { Router } from '@angular/router';
-import { Location } from '@angular/common';
-import { NgxSpinnerService } from 'ngx-spinner';
+import { BaseComponent } from '../base-component';
+
 
 API.configure(awsconfig);
 @Component({
@@ -13,14 +12,13 @@ API.configure(awsconfig);
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent extends BaseComponent {
 
   user: CognitoUserInterface | undefined;
-  authState!: AuthState;
 
   signUpFormFields: FormFieldTypes | undefined;
   signInFormFields: FormFieldTypes | undefined;
-  
+
 
   authScreenLabels = {
     pt: {
@@ -47,12 +45,13 @@ export class LoginComponent {
     }
   };
 
-  constructor(private spinner: NgxSpinnerService, private _location: Location, private zone: NgZone
-    , private ref: ChangeDetectorRef, private router: Router) { 
-      I18n.setLanguage('pt');
+
+  constructor() {
+    super();
+    I18n.setLanguage('pt');
     I18n.putVocabularies(this.authScreenLabels);
 
-    }
+  }
 
   ngOnInit(): void {
 
@@ -69,8 +68,9 @@ export class LoginComponent {
       { type: "custom:num_celular", label: "Celular", placeholder: "61 99999-9999", required: true, }
     ];
 
-   
+
   }
+
 
   ngOnDestroy() {
     return onAuthUIStateChange;

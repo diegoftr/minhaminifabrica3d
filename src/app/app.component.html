@@ -3,27 +3,29 @@
 
 <div class="cabecalho">
   <div class="App">
-    <mat-toolbar color="white" style="background-color: white; color: white;">
+    <mat-toolbar color="white" style="padding: 0; background-color: white; color: white;">
       <img src="/assets/minhaminifabrica.png" />
       <span style="flex: 0.2 0.2 auto;"></span>
       <a mat-button style="color: black;" (click)="acaoBtnInicio()">Início</a>&nbsp;
-      <a mat-button style="color: black;" (click)="acaoBtnOrcamento()">Solicitar orçamento</a>
-      <a mat-button style="color: black;">Meus orçamentos</a>
+      <a mat-button style="color: black;" *ngIf="isUsuario()" (click)="acaoBtnOrcamento()">Solicitar orçamento</a>
+      <a mat-button style="color: black;" *ngIf="isUsuario()">Meus orçamentos</a>
       <span style="flex: 1 1 auto;"></span>
       <a mat-button style="color: black;" *ngIf="authenticator.route === 'authenticated'" (click)="acaoBtnLogin()">Meus
         Dados</a>
 
-        <a mat-button style="color: black;" *ngIf="group == 'admin'" [matMenuTriggerFor]="menu">Administrador</a>
+        <a mat-button style="color: black;" *ngIf="isAdmin()" [matMenuTriggerFor]="menu">Administrador</a>
         <mat-menu #menu="matMenu">
-          <a mat-menu-item>Item 1</a>
-          <a mat-menu-item>Item 2</a>
+          <a mat-menu-item (click)="acaoBtnAcabamento()">Acabamento</a>
+          <a mat-menu-item (click)="acaoBtnMaterial()">Material</a>
+          <a mat-menu-item (click)="acaoBtnTecnologia()">Tecnologia</a>
+          <a mat-menu-item (click)="acaoBtnCor()">Cor</a>
         </mat-menu>
       
       <a mat-button style="color: black;" *ngIf="authenticator.route !== 'authenticated'"
-        (click)="acaoBtnLogin()">Login</a>
+        (click)="acaoBtnLogin()">Criar conta</a>
     
       <a mat-button style="color: black;" *ngIf="authenticator.route === 'authenticated'"
-        (click)="authenticator.signOut()">Logout</a>
+        (click)="logout()">Logout</a>
 
     </mat-toolbar>
   </div>
@@ -35,6 +37,6 @@
   <div style="width: 200px;">
   </div>
 </div>
-<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="pacman" [fullScreen]="true">
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" [fullScreen]="true">
   <p style="color: white"> Carregando... </p>
 </ngx-spinner>

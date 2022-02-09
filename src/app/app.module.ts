@@ -18,6 +18,10 @@ import { OrcamentoComponent } from './solicitar-orcamento/solicitar-orcamento.co
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatMenuModule} from '@angular/material/menu';
+import { TecnologiaComponent } from './tecnologia/tecnologia.component';
+import { MaterialComponent } from './material/material.component';
+import { AcabamentoComponent } from './acabamento/acabamento.component';
+import { CorComponent } from './cor/cor.component';
 
 
 @NgModule({
@@ -25,7 +29,11 @@ import {MatMenuModule} from '@angular/material/menu';
     AppComponent,
     HomeComponent,
     OrcamentoComponent,
-    LoginComponent
+    LoginComponent,
+    TecnologiaComponent,
+    MaterialComponent,
+    AcabamentoComponent,
+    CorComponent
   ],
   imports: [
     BrowserModule,

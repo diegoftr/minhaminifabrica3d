@@ -4,23 +4,45 @@ body {
     font-family: 'Trebuchet MS', sans-serif;
 }
 
-:root{
-    --amplify-primary-color: #afcb08;
-    --amplify-primary-tint: #a8b176;
-    --amplify-primary-shade: #c6e709;
-  }
-  
+#divCentro {
+  display: grid;
+}
+
+#form{
+  padding: 20px;
+  position: relative;
+  place-self: center;
+  width: 60rem;
+  box-shadow: var(--amplify-shadows-medium);
+}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .botao {
-  color: white;background-color: rgb(175, 203, 8);
+  color: white;background-color: black;
 }
 
 html{
     padding-left: 10%;
     padding-right: 10%;
+}
+
+.tabela {
+  width: 100%;   
+  border: 2px solid black;   
+  border-collapse: collapse;
+}
+
+.linhaTabela {
+  text-align: center; 
+  border: 2px solid black;   
+  border-collapse: collapse;
+}
+
+.colunaTabela {
+  border: 2px solid black;   
+  border-collapse: collapse;
 }
 
 button{

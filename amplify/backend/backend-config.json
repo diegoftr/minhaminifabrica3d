@@ -35,7 +35,15 @@
               "userPoolId": "authminhaminifabrica3dap5217775b"
             }
           },
-          "additionalAuthenticationProviders": []
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "API_KEY",
+              "apiKeyConfig": {
+                "apiKeyExpirationDays": 7,
+                "description": ""
+              }
+            }
+          ]
         }
       }
     }

@@ -1,8 +1,12 @@
 .cabecalho {
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-bottom: 50px;
 }
 
 .corpo {
-  margin: 30px;
+  margin-left: 100px;
+  margin-right: 100px;
   
 }
 

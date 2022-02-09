@@ -1,12 +1,74 @@
+<div id="divCentro">
+    <br>
+    <form id="form" [formGroup]="form">
+        <h1><b>Solicitar orçamento</b></h1>
+        <br>
+        <table style="width: 100%;">
+            <tr>
+                <td>
+                    <mat-form-field [style.width.px]="556">
+                        <mat-label><span>Titulo solicitação</span></mat-label>
+                        <input matInput type="string" maxlength="150" formControlName="titulo">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Tecnologia</mat-label>
+                        <mat-select formControlName="Tecnologia">
+                            <mat-option *ngFor="let tecnologia of tecnologias" [value]="tecnologia.id">
+                                {{tecnologia.descricao}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Cor</mat-label>
+                        <mat-select formControlName="Cor">
+                            <mat-option *ngFor="let cor of cores" [value]="cor.id">
+                                {{cor.descricao}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Material</mat-label>
+                        <mat-select formControlName="Material">
+                            <mat-option *ngFor="let material of materiais" [value]="material.id">
+                                {{material.descricao}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Acabamento</mat-label>
+                        <mat-select formControlName="Acabamento">
+                            <mat-option *ngFor="let acabamento of acabamentos" [value]="acabamento.id">
+                                {{acabamento.descricao}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </td> 
+            </tr>
 
-<br>
-<form id="form" [formGroup]="form">
-<h1>Solicitar Orçamento</h1>
-<br>
-<div>
-    <mat-form-field [style.width.px]="256">
-        <mat-label><span>Titulo Solicitação</span></mat-label>
-        <input matInput type="string" maxlength="50" formControlName="titulo">
-    </mat-form-field>
+            <tr>
+                <td style="text-align: center;">
+                    <button mat-raised-button class="botao" (click)="salvarOrcamento()">Salvar</button>
+                </td> 
+            </tr>
+        </table>
+    </form>
 </div>
-</form>
+<br>
+<br>
+<br>

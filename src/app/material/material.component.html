@@ -1,0 +1,49 @@
+<div id="divCentro">
+    <br>
+    <form id="form" [formGroup]="form">
+        <h1><b>Manter Material</b></h1>
+        <br>
+        <div>
+            <mat-form-field [style.width.px]="556">
+                <mat-label><span>ID</span></mat-label>
+                <input matInput type="string" maxlength="50" formControlName="id" readonly="true">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field [style.width.px]="556">
+                <mat-label><span>Descrição</span></mat-label>
+                <input matInput type="string" maxlength="50" formControlName="descricao">
+            </mat-form-field>
+        </div>
+        <div>
+            <button mat-raised-button class="botao" (click)="salvarMaterial()">Salvar</button>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h1>Lista Materials</h1>
+        <br>
+        <table class="tabela">
+            <tr class="linhaTabela">
+                <td class="colunaTabela" style="background-color: #35cbfb;"><b>ID</b></td>
+                <td class="colunaTabela" style="background-color: #35cbfb;"><b>Descricao</b></td>
+                <td class="colunaTabela" style="background-color: red;"></td>
+            </tr>
+            <tr class="linhaTabela" *ngFor="let material of materiais; let i = index">
+                <td class="colunaTabela">
+                    <a (click)="preencherMaterial(material.id)" style="color: blue; cursor:pointer;">{{material.id}}</a>
+                </td>
+                <td class="colunaTabela">
+                    {{material.descricao}}
+                </td>
+                <td class="colunaTabela">
+                    <a style="color: red; cursor:pointer;" (click)="excluirMaterial(material.id)"><b>X</b></a>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br>
+    <br>
+    <br>
+</div>
