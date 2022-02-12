@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticatorService } from '@aws-amplify/ui-angular';
 import { BaseComponent } from '../base-component';
 
 @Component({
@@ -9,7 +10,7 @@ import { BaseComponent } from '../base-component';
 })
 export class HomeComponent extends BaseComponent implements OnInit  {
 
-  constructor(private router: Router) {
+  constructor(private router: Router, public authenticator: AuthenticatorService) {
     super();
    }
 
@@ -18,6 +19,10 @@ export class HomeComponent extends BaseComponent implements OnInit  {
 
   acaoBtnOrcamento() {
     this.router.navigate(['/orcamento']);
+  }
+
+  isUsuario() {
+    return this.authenticator.user == null ? false : this.authenticator.user.getSignInUserSession()?.getAccessToken().payload["cognito:groups"] == undefined;
   }
 
 }

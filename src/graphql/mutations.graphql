@@ -41,6 +41,114 @@ mutation DeleteEnderecos(
     owner
   }
 }
+mutation CreateChats(
+  $input: CreateChatsInput!
+  $condition: ModelChatsConditionInput
+) {
+  createChats(input: $input, condition: $condition) {
+    id
+    usuarioEnvio
+    Proposta {
+      id
+      Orcamento {
+        id
+        arquivo
+        titulo
+        escala
+        situacao
+        observacao
+        usuario
+        createdAt
+        updatedAt
+        owner
+      }
+      idOrcamento
+      prazo
+      valor
+      frete
+      responsavelProposta
+      createdAt
+      updatedAt
+      owner
+    }
+    idProposta
+    msg
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateChats(
+  $input: UpdateChatsInput!
+  $condition: ModelChatsConditionInput
+) {
+  updateChats(input: $input, condition: $condition) {
+    id
+    usuarioEnvio
+    Proposta {
+      id
+      Orcamento {
+        id
+        arquivo
+        titulo
+        escala
+        situacao
+        observacao
+        usuario
+        createdAt
+        updatedAt
+        owner
+      }
+      idOrcamento
+      prazo
+      valor
+      frete
+      responsavelProposta
+      createdAt
+      updatedAt
+      owner
+    }
+    idProposta
+    msg
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteChats(
+  $input: DeleteChatsInput!
+  $condition: ModelChatsConditionInput
+) {
+  deleteChats(input: $input, condition: $condition) {
+    id
+    usuarioEnvio
+    Proposta {
+      id
+      Orcamento {
+        id
+        arquivo
+        titulo
+        escala
+        situacao
+        observacao
+        usuario
+        createdAt
+        updatedAt
+        owner
+      }
+      idOrcamento
+      prazo
+      valor
+      frete
+      responsavelProposta
+      createdAt
+      updatedAt
+      owner
+    }
+    idProposta
+    msg
+    createdAt
+    updatedAt
+  }
+}
 mutation CreateUsuarios(
   $input: CreateUsuariosInput!
   $condition: ModelUsuariosConditionInput
@@ -116,14 +224,9 @@ mutation CreateOrcamentos(
 ) {
   createOrcamentos(input: $input, condition: $condition) {
     id
-    arquivo {
-      bucket
-      key
-      region
-    }
+    arquivo
     titulo
     escala
-    verniz
     Tecnologia {
       id
       descricao
@@ -148,19 +251,23 @@ mutation CreateOrcamentos(
       createdAt
       updatedAt
     }
-    situacao
     Proposta {
       items {
         id
+        idOrcamento
         prazo
         valor
         frete
+        responsavelProposta
         createdAt
         updatedAt
         owner
       }
       nextToken
     }
+    situacao
+    observacao
+    usuario
     createdAt
     updatedAt
     owner
@@ -172,14 +279,9 @@ mutation UpdateOrcamentos(
 ) {
   updateOrcamentos(input: $input, condition: $condition) {
     id
-    arquivo {
-      bucket
-      key
-      region
-    }
+    arquivo
     titulo
     escala
-    verniz
     Tecnologia {
       id
       descricao
@@ -204,19 +306,23 @@ mutation UpdateOrcamentos(
       createdAt
       updatedAt
     }
-    situacao
     Proposta {
       items {
         id
+        idOrcamento
         prazo
         valor
         frete
+        responsavelProposta
         createdAt
         updatedAt
         owner
       }
       nextToken
     }
+    situacao
+    observacao
+    usuario
     createdAt
     updatedAt
     owner
@@ -228,14 +334,9 @@ mutation DeleteOrcamentos(
 ) {
   deleteOrcamentos(input: $input, condition: $condition) {
     id
-    arquivo {
-      bucket
-      key
-      region
-    }
+    arquivo
     titulo
     escala
-    verniz
     Tecnologia {
       id
       descricao
@@ -260,19 +361,23 @@ mutation DeleteOrcamentos(
       createdAt
       updatedAt
     }
-    situacao
     Proposta {
       items {
         id
+        idOrcamento
         prazo
         valor
         frete
+        responsavelProposta
         createdAt
         updatedAt
         owner
       }
       nextToken
     }
+    situacao
+    observacao
+    usuario
     createdAt
     updatedAt
     owner
@@ -286,14 +391,9 @@ mutation CreatePropostas(
     id
     Orcamento {
       id
-      arquivo {
-        bucket
-        key
-        region
-      }
+      arquivo
       titulo
       escala
-      verniz
       Tecnologia {
         id
         descricao
@@ -318,17 +418,21 @@ mutation CreatePropostas(
         createdAt
         updatedAt
       }
-      situacao
       Proposta {
         nextToken
       }
+      situacao
+      observacao
+      usuario
       createdAt
       updatedAt
       owner
     }
+    idOrcamento
     prazo
     valor
     frete
+    responsavelProposta
     createdAt
     updatedAt
     owner
@@ -342,14 +446,9 @@ mutation UpdatePropostas(
     id
     Orcamento {
       id
-      arquivo {
-        bucket
-        key
-        region
-      }
+      arquivo
       titulo
       escala
-      verniz
       Tecnologia {
         id
         descricao
@@ -374,17 +473,21 @@ mutation UpdatePropostas(
         createdAt
         updatedAt
       }
-      situacao
       Proposta {
         nextToken
       }
+      situacao
+      observacao
+      usuario
       createdAt
       updatedAt
       owner
     }
+    idOrcamento
     prazo
     valor
     frete
+    responsavelProposta
     createdAt
     updatedAt
     owner
@@ -398,14 +501,9 @@ mutation DeletePropostas(
     id
     Orcamento {
       id
-      arquivo {
-        bucket
-        key
-        region
-      }
+      arquivo
       titulo
       escala
-      verniz
       Tecnologia {
         id
         descricao
@@ -430,17 +528,21 @@ mutation DeletePropostas(
         createdAt
         updatedAt
       }
-      situacao
       Proposta {
         nextToken
       }
+      situacao
+      observacao
+      usuario
       createdAt
       updatedAt
       owner
     }
+    idOrcamento
     prazo
     valor
     frete
+    responsavelProposta
     createdAt
     updatedAt
     owner

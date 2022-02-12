@@ -28,6 +28,67 @@ query ListEnderecos(
     nextToken
   }
 }
+query GetChats($id: ID!) {
+  getChats(id: $id) {
+    id
+    usuarioEnvio
+    Proposta {
+      id
+      Orcamento {
+        id
+        arquivo
+        titulo
+        escala
+        situacao
+        observacao
+        usuario
+        createdAt
+        updatedAt
+        owner
+      }
+      idOrcamento
+      prazo
+      valor
+      frete
+      responsavelProposta
+      createdAt
+      updatedAt
+      owner
+    }
+    idProposta
+    msg
+    createdAt
+    updatedAt
+  }
+}
+query ListChats(
+  $filter: ModelChatsFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listChats(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      usuarioEnvio
+      Proposta {
+        id
+        idOrcamento
+        prazo
+        valor
+        frete
+        responsavelProposta
+        createdAt
+        updatedAt
+        owner
+      }
+      idProposta
+      msg
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
 query GetUsuarios($id: ID!) {
   getUsuarios(id: $id) {
     id
@@ -78,14 +139,9 @@ query ListUsuarios(
 query GetOrcamentos($id: ID!) {
   getOrcamentos(id: $id) {
     id
-    arquivo {
-      bucket
-      key
-      region
-    }
+    arquivo
     titulo
     escala
-    verniz
     Tecnologia {
       id
       descricao
@@ -110,19 +166,23 @@ query GetOrcamentos($id: ID!) {
       createdAt
       updatedAt
     }
-    situacao
     Proposta {
       items {
         id
+        idOrcamento
         prazo
         valor
         frete
+        responsavelProposta
         createdAt
         updatedAt
         owner
       }
       nextToken
     }
+    situacao
+    observacao
+    usuario
     createdAt
     updatedAt
     owner
@@ -136,14 +196,9 @@ query ListOrcamentos(
   listOrcamentos(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      arquivo {
-        bucket
-        key
-        region
-      }
+      arquivo
       titulo
       escala
-      verniz
       Tecnologia {
         id
         descricao
@@ -168,10 +223,12 @@ query ListOrcamentos(
         createdAt
         updatedAt
       }
-      situacao
       Proposta {
         nextToken
       }
+      situacao
+      observacao
+      usuario
       createdAt
       updatedAt
       owner
@@ -184,14 +241,9 @@ query GetPropostas($id: ID!) {
     id
     Orcamento {
       id
-      arquivo {
-        bucket
-        key
-        region
-      }
+      arquivo
       titulo
       escala
-      verniz
       Tecnologia {
         id
         descricao
@@ -216,17 +268,21 @@ query GetPropostas($id: ID!) {
         createdAt
         updatedAt
       }
-      situacao
       Proposta {
         nextToken
       }
+      situacao
+      observacao
+      usuario
       createdAt
       updatedAt
       owner
     }
+    idOrcamento
     prazo
     valor
     frete
+    responsavelProposta
     createdAt
     updatedAt
     owner
@@ -242,17 +298,21 @@ query ListPropostas(
       id
       Orcamento {
         id
+        arquivo
         titulo
         escala
-        verniz
         situacao
+        observacao
+        usuario
         createdAt
         updatedAt
         owner
       }
+      idOrcamento
       prazo
       valor
       frete
+      responsavelProposta
       createdAt
       updatedAt
       owner

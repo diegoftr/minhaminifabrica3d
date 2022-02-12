@@ -22,6 +22,10 @@ import { TecnologiaComponent } from './tecnologia/tecnologia.component';
 import { MaterialComponent } from './material/material.component';
 import { AcabamentoComponent } from './acabamento/acabamento.component';
 import { CorComponent } from './cor/cor.component';
+import { LegacyAmplifyUiModule } from '@aws-amplify/ui-angular/legacy';
+import { StlModelViewerModule } from 'angular-stl-model-viewer';
+import {MatSliderModule} from '@angular/material/slider';
+import { MeusOrcamentosComponent } from './meus-orcamentos/meus-orcamentos.component';
 
 
 @NgModule({
@@ -33,7 +37,8 @@ import { CorComponent } from './cor/cor.component';
     TecnologiaComponent,
     MaterialComponent,
     AcabamentoComponent,
-    CorComponent
+    CorComponent,
+    MeusOrcamentosComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +47,9 @@ import { CorComponent } from './cor/cor.component';
     NgxSpinnerModule,
     FormsModule,
 
+    MatSliderModule,
+    StlModelViewerModule,
+    LegacyAmplifyUiModule,
     MatMenuModule,
     AppRoutingModule,
     NgxSpinnerModule,

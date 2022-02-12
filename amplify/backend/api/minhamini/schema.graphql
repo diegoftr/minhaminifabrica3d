@@ -12,10 +12,20 @@ type Enderecos @model
   complemento: String!
 }
 
+type Chats @model 
+@key(name: "byChat", fields: ["id"])
+{
+  id: ID!
+  usuarioEnvio: String!
+  Proposta: Propostas @connection
+  idProposta: String!
+  msg: String!
+}
+
 type Usuarios @model @key(name: "byUsuarios", fields: ["id"])
 @auth(
     rules: [
-      { allow: owner }
+      { allow: owner , operations: [create, delete, update, read]}
       { allow: groups, groups: ["admin"]}
     ]
  ){
@@ -30,36 +40,38 @@ type Orcamentos @model
 @key(name: "byOrcamento", fields: ["id"])
 @auth(
     rules: [
-      { allow: owner }
-      { allow: groups, groups: ["admin"]}
+      { allow: owner, operations: [create, delete]}
     ]
  ){
   id: ID!
-  arquivo: S3Object!
+  arquivo: String!
   titulo: String!
   escala: Int!
-  verniz: Boolean!
-  Tecnologia: Tecnologias @connection
-  Material: Materiais @connection
-  Acabamento: Acabamentos @connection
-  Cor: Cores @connection
-  situacao: SituacaoOrcamento!
+  Tecnologia: Tecnologias! @connection
+  Material: Materiais! @connection
+  Acabamento: Acabamentos! @connection
+  Cor: Cores! @connection
   Proposta: [Propostas] @connection
+  situacao: SituacaoOrcamento!
+  observacao: String
+  usuario: String! 
 }
 
 type Propostas @model 
 @key(name: "byProposta", fields: ["id"])
 @auth(
     rules: [
-      { allow: owner }
-      { allow: groups, groups: ["admin"]}
+      { allow: owner, operations: [create, delete] }
     ]
  ){
   id: ID!
   Orcamento: Orcamentos @connection
+  idOrcamento: String!
   prazo: String!
   valor: String!
   frete: String!
+  responsavelProposta: String!
+
 }
 
 type Cores @model 
@@ -104,20 +116,6 @@ type Tecnologias @model
  ){
   id: ID!
   descricao: String!
-}
-
-type S3Object {
-    bucket: String!
-    key: String!
-    region: String!
-}
-
-input S3ObjectInput {
-    bucket: String!
-    key: String!
-    region: String!
-    localUri: String
-    mimeType: String
 }
 
 enum SituacaoOrcamento {

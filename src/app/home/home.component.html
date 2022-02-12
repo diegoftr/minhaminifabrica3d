@@ -16,7 +16,7 @@
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
-                        <td><button (click)="acaoBtnOrcamento()">SOLICITAR ORÇAMENTO</button></td>
+                        <td><button *ngIf="isUsuario()" (click)="acaoBtnOrcamento()">SOLICITAR ORÇAMENTO</button></td>
                     </tr>
                 </table>
             </td>

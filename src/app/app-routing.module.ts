@@ -6,6 +6,7 @@ import { CorComponent } from './cor/cor.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { MaterialComponent } from './material/material.component';
+import { MeusOrcamentosComponent } from './meus-orcamentos/meus-orcamentos.component';
 import { OrcamentoComponent } from './solicitar-orcamento/solicitar-orcamento.component';
 import { TecnologiaComponent } from './tecnologia/tecnologia.component';
 
@@ -33,6 +34,9 @@ const routes: Routes = [{
 },{
   path: 'cor',
   component: CorComponent,
+},{
+  path: 'meusOrcamentos',
+  component: MeusOrcamentosComponent,
 }
 ];
 

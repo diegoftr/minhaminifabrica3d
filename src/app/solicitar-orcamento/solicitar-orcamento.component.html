@@ -1,73 +1,235 @@
 <div id="divCentro">
     <br>
     <form id="form" [formGroup]="form">
-        <h1><b>Solicitar orçamento</b></h1>
+
+        <h1 *ngIf="isUsuario()"><b>Solicitar orçamento</b></h1>
+        <h1 *ngIf="!isUsuario()"><b>Candidatar-se ao orçamentos</b></h1>
+
         <br>
         <table style="width: 100%;">
             <tr>
                 <td>
-                    <mat-form-field [style.width.px]="556">
-                        <mat-label><span>Titulo solicitação</span></mat-label>
+                    <mat-form-field [style.width.px]="850" *ngIf="!form.get('id')!.value">
+                        <mat-label><span>Titulo orçamento</span></mat-label>
                         <input matInput type="string" maxlength="150" formControlName="titulo">
                     </mat-form-field>
+                    <h1 *ngIf="form.get('id')!.value">{{form.get('titulo')!.value}}</h1>
                 </td>
             </tr>
-            <tr>
+            <tr *ngIf="caminhoArquivo.length == 0">
                 <td>
-                    <mat-form-field appearance="fill">
-                        <mat-label>Tecnologia</mat-label>
-                        <mat-select formControlName="Tecnologia">
-                            <mat-option *ngFor="let tecnologia of tecnologias" [value]="tecnologia.id">
-                                {{tecnologia.descricao}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
                 </td>
             </tr>
-            <tr>
+            <tr *ngIf="caminhoArquivo.length == 0">
                 <td>
-                    <mat-form-field appearance="fill">
-                        <mat-label>Cor</mat-label>
-                        <mat-select formControlName="Cor">
-                            <mat-option *ngFor="let cor of cores" [value]="cor.id">
-                                {{cor.descricao}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
+                    <label class="label" for="arquivo">ENVIAR STL</label>
+                    <input type="file" accept=".stl" name="arquivo" id="arquivo" class="custom-file-input"
+                        (change)="uploadStl($event)">
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <mat-form-field appearance="fill">
-                        <mat-label>Material</mat-label>
-                        <mat-select formControlName="Material">
-                            <mat-option *ngFor="let material of materiais" [value]="material.id">
-                                {{material.descricao}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <mat-form-field appearance="fill">
-                        <mat-label>Acabamento</mat-label>
-                        <mat-select formControlName="Acabamento">
-                            <mat-option *ngFor="let acabamento of acabamentos" [value]="acabamento.id">
-                                {{acabamento.descricao}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </td> 
-            </tr>
-
+        </table>
+        <br>
+        <table style="width: 100%;" *ngIf="caminhoArquivo.length > 0">
+            <!-- <table style="width: 100%;"> -->
             <tr>
                 <td style="text-align: center;">
-                    <button mat-raised-button class="botao" (click)="salvarOrcamento()">Salvar</button>
-                </td> 
+                    <h2><b>Preview</b></h2>
+                </td>
+                <td style="text-align: center;">
+                    <h2><b>Configurações da impressão</b></h2>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 50%;border-right: 1px dashed black;border-collapse: collapse;text-align: center;">
+                    <div>
+                        <stl-model-viewer [centered]="false" style="width: 400px; height: 400px;"
+                            [stlModels]="caminhoArquivo"></stl-model-viewer>
+                        <br>
+                        <a href="{{caminhoArquivo}}" target="">Download STL</a>
+                    </div>
+                </td>
+                <td style="text-align: center;">
+                    <table style="text-align: center;width: 100%;">
+                        <tr>
+                            <td>
+                                <mat-label>Escala</mat-label>&nbsp;<mat-slider formControlName="escala"
+                                    [disabled]="form.get('id')!.value" [thumbLabel]="true" min="1" max="200" step="1"
+                                    value="100"></mat-slider>
+                                &nbsp;{{form.get('escala')!.value}}%<br>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Tecnologia</mat-label>
+                                    <mat-select formControlName="orcamentosTecnologiaId"
+                                        [disabled]="form.get('id')!.value">
+                                        <mat-option *ngFor="let tecnologia of tecnologias" [value]="tecnologia.id">
+                                            {{tecnologia.descricao}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Cor</mat-label>
+                                    <mat-select [disabled]="form.get('id')!.value" formControlName="orcamentosCorId">
+                                        <mat-option *ngFor="let cor of cores" [value]="cor.id">
+                                            {{cor.descricao}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Material</mat-label>
+                                    <mat-select formControlName="orcamentosMaterialId"
+                                        [disabled]="form.get('id')!.value">
+                                        <mat-option *ngFor="let material of materiais" [value]="material.id">
+                                            {{material.descricao}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Acabamento</mat-label>
+                                    <mat-select formControlName="orcamentosAcabamentoId"
+                                        [disabled]="form.get('id')!.value">
+                                        <mat-option *ngFor="let acabamento of acabamentos" [value]="acabamento.id">
+                                            {{acabamento.descricao}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <mat-form-field [style.width.px]="850" *ngIf="!form.get('id')!.value">
+                        <mat-label><span>Observação</span></mat-label>
+                        <input matInput type="string" maxlength="500" formControlName="observacao"
+                            readonly="!form.get('id').value">
+                    </mat-form-field>
+                    <h2 *ngIf="form.get('id')!.value">{{form.get('observacao')!.value}}</h2>
+                </td>
             </tr>
         </table>
     </form>
+    <br>
+    <br>
+    <div *ngIf="isParceiro()">
+        <form id="form" [formGroup]="formProposta">
+            <h1><b>Dados propostas</b></h1>
+            <br>
+            <table style="width: 100%;">
+                <tr>
+                    <td>
+                        <mat-form-field [style.width.px]="150" *ngIf="!formProposta.get('id')!.value">
+                            <mat-label><span>Valor proposta</span></mat-label>
+                            <input matInput type="string" maxlength="150" formControlName="valor">
+                        </mat-form-field>
+                        <h3 *ngIf="formProposta.get('id')!.value">Valor proposta
+                            {{formatarMoeda(formProposta.get('valor')!.value)}}</h3>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field [style.width.px]="150" *ngIf="!formProposta.get('id')!.value">
+                            <mat-label><span>Valor frete</span></mat-label>
+                            <input matInput type="string" maxlength="150" formControlName="frete">
+                        </mat-form-field>
+
+                        <h3 *ngIf="formProposta.get('id')!.value">Valor frete
+                            {{formatarMoeda(formProposta.get('frete')!.value)}}</h3>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div *ngIf="!formProposta.get('id')!.value">
+                            <mat-label>Prazo </mat-label>&nbsp;<mat-slider formControlName="prazo" [thumbLabel]="true"
+                                min="1" max="60" step="1" value="1"></mat-slider>
+                            &nbsp;{{formProposta.get('prazo')!.value}} dias<br>
+                        </div>
+
+                        <h3 *ngIf="formProposta.get('id')!.value">Prazo {{formProposta.get('prazo')!.value}} dias</h3>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <form id="form" *ngIf="!isParceiro() && form.get('id')!.value">
+        <div>
+            <h1><b>Propostas enviadas</b></h1>
+            <br>
+            <table class="tabela">
+                <tr class="linhaTabela">
+                    <td class="colunaTabela" style="background-color: #35cbfb;"><b>Parceiro</b></td>
+                    <td class="colunaTabela" style="background-color: #35cbfb;"><b>Prazo</b></td>
+                    <td class="colunaTabela" style="background-color: #35cbfb;"><b>Valor</b></td>
+                    <td class="colunaTabela" style="background-color: #35cbfb;"><b>Frete</b></td>
+                </tr>
+                <tr *ngFor="let proposta of propostas">
+                    <td class="colunaTabela"><a  (click)="carregarChat(proposta.responsavelProposta, proposta.id)" style="color: blue; cursor:pointer;">{{proposta.responsavelProposta}}</a></td>
+                    <td class="colunaTabela">{{proposta.prazo}} dias</td>
+                    <td class="colunaTabela">{{formatarMoeda(proposta.valor)}}</td>
+                    <td class="colunaTabela">{{formatarMoeda(proposta.frete)}}</td>
+                </tr>
+            </table>
+        </div>
+    </form> 
+    <br>
+    <br>
+    <form id="form" *ngIf="responsavelProposta != ''" [formGroup]="formChat">
+        <div>
+            <h1><b>Chat</b></h1>
+            <br>
+            <table class="tabela">
+                <tr class="linhaTabela">
+                    <td class="colunaTabela" style="background-color: #35cbfb;"><b>Mensagem</b></td>
+                </tr>
+                <tr *ngFor="let chat of chats">
+                    <td>{{formatarData(chat.createdAt)}} - {{chat.usuarioEnvio}}: <b>{{chat.msg}}</b></td>
+                </tr>
+            </table>
+            <br>
+            <br>
+            <table>
+                <tr>
+                    <td>
+                        <mat-form-field [style.width.px]="550">
+                            <mat-label><span>Mensagem</span></mat-label>
+                            <input matInput type="string" maxlength="150" formControlName="msg">
+                        </mat-form-field>
+                    </td>
+                    <td style="width: 100%;text-align: end;">
+                        <button mat-raised-button class="botao" (click)="enviarMsgChat()">ENVIAR MENSAGEM</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+    <br>
+    <br>
+    <table style="width: 100%;" *ngIf="caminhoArquivo.length > 0">
+        <tr>
+            <td style="text-align: center;" colspan="2">
+                <button mat-raised-button class="botao" *ngIf="isUsuario()" (click)="salvarOrcamento()">SOLICITAR
+                    ORÇAMENTO</button>
+                <button mat-raised-button class="botao" *ngIf="!isUsuario() && !formProposta.get('id')!.value"
+                    (click)="enviarProposta()">ENVIAR PROPOSTA</button>
+            </td>
+        </tr>
+    </table>
 </div>
 <br>
 <br>

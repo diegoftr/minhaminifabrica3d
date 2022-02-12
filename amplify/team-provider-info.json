@@ -14,6 +14,12 @@
     "categories": {
       "auth": {
         "minhaminifabrica3dap5217775b": {}
+      },
+      "function": {
+        "S3Triggere58c3113": {
+          "deploymentBucketName": "amplify-minhaminifabrica3dap-dev-213907-deployment",
+          "s3Key": "amplify-builds/S3Triggere58c3113-54457149306763576156-build.zip"
+        }
       }
     }
   }

@@ -32,6 +32,105 @@ subscription OnDeleteEnderecos($owner: String) {
     owner
   }
 }
+subscription OnCreateChats {
+  onCreateChats {
+    id
+    usuarioEnvio
+    Proposta {
+      id
+      Orcamento {
+        id
+        arquivo
+        titulo
+        escala
+        situacao
+        observacao
+        usuario
+        createdAt
+        updatedAt
+        owner
+      }
+      idOrcamento
+      prazo
+      valor
+      frete
+      responsavelProposta
+      createdAt
+      updatedAt
+      owner
+    }
+    idProposta
+    msg
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateChats {
+  onUpdateChats {
+    id
+    usuarioEnvio
+    Proposta {
+      id
+      Orcamento {
+        id
+        arquivo
+        titulo
+        escala
+        situacao
+        observacao
+        usuario
+        createdAt
+        updatedAt
+        owner
+      }
+      idOrcamento
+      prazo
+      valor
+      frete
+      responsavelProposta
+      createdAt
+      updatedAt
+      owner
+    }
+    idProposta
+    msg
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteChats {
+  onDeleteChats {
+    id
+    usuarioEnvio
+    Proposta {
+      id
+      Orcamento {
+        id
+        arquivo
+        titulo
+        escala
+        situacao
+        observacao
+        usuario
+        createdAt
+        updatedAt
+        owner
+      }
+      idOrcamento
+      prazo
+      valor
+      frete
+      responsavelProposta
+      createdAt
+      updatedAt
+      owner
+    }
+    idProposta
+    msg
+    createdAt
+    updatedAt
+  }
+}
 subscription OnCreateUsuarios($owner: String) {
   onCreateUsuarios(owner: $owner) {
     id
@@ -92,17 +191,12 @@ subscription OnDeleteUsuarios($owner: String) {
     owner
   }
 }
-subscription OnCreateOrcamentos($owner: String) {
-  onCreateOrcamentos(owner: $owner) {
+subscription OnCreateOrcamentos {
+  onCreateOrcamentos {
     id
-    arquivo {
-      bucket
-      key
-      region
-    }
+    arquivo
     titulo
     escala
-    verniz
     Tecnologia {
       id
       descricao
@@ -127,35 +221,34 @@ subscription OnCreateOrcamentos($owner: String) {
       createdAt
       updatedAt
     }
-    situacao
     Proposta {
       items {
         id
+        idOrcamento
         prazo
         valor
         frete
+        responsavelProposta
         createdAt
         updatedAt
         owner
       }
       nextToken
     }
+    situacao
+    observacao
+    usuario
     createdAt
     updatedAt
     owner
   }
 }
-subscription OnUpdateOrcamentos($owner: String) {
-  onUpdateOrcamentos(owner: $owner) {
+subscription OnUpdateOrcamentos {
+  onUpdateOrcamentos {
     id
-    arquivo {
-      bucket
-      key
-      region
-    }
+    arquivo
     titulo
     escala
-    verniz
     Tecnologia {
       id
       descricao
@@ -180,35 +273,34 @@ subscription OnUpdateOrcamentos($owner: String) {
       createdAt
       updatedAt
     }
-    situacao
     Proposta {
       items {
         id
+        idOrcamento
         prazo
         valor
         frete
+        responsavelProposta
         createdAt
         updatedAt
         owner
       }
       nextToken
     }
+    situacao
+    observacao
+    usuario
     createdAt
     updatedAt
     owner
   }
 }
-subscription OnDeleteOrcamentos($owner: String) {
-  onDeleteOrcamentos(owner: $owner) {
+subscription OnDeleteOrcamentos {
+  onDeleteOrcamentos {
     id
-    arquivo {
-      bucket
-      key
-      region
-    }
+    arquivo
     titulo
     escala
-    verniz
     Tecnologia {
       id
       descricao
@@ -233,37 +325,36 @@ subscription OnDeleteOrcamentos($owner: String) {
       createdAt
       updatedAt
     }
-    situacao
     Proposta {
       items {
         id
+        idOrcamento
         prazo
         valor
         frete
+        responsavelProposta
         createdAt
         updatedAt
         owner
       }
       nextToken
     }
+    situacao
+    observacao
+    usuario
     createdAt
     updatedAt
     owner
   }
 }
-subscription OnCreatePropostas($owner: String) {
-  onCreatePropostas(owner: $owner) {
+subscription OnCreatePropostas {
+  onCreatePropostas {
     id
     Orcamento {
       id
-      arquivo {
-        bucket
-        key
-        region
-      }
+      arquivo
       titulo
       escala
-      verniz
       Tecnologia {
         id
         descricao
@@ -288,35 +379,34 @@ subscription OnCreatePropostas($owner: String) {
         createdAt
         updatedAt
       }
-      situacao
       Proposta {
         nextToken
       }
+      situacao
+      observacao
+      usuario
       createdAt
       updatedAt
       owner
     }
+    idOrcamento
     prazo
     valor
     frete
+    responsavelProposta
     createdAt
     updatedAt
     owner
   }
 }
-subscription OnUpdatePropostas($owner: String) {
-  onUpdatePropostas(owner: $owner) {
+subscription OnUpdatePropostas {
+  onUpdatePropostas {
     id
     Orcamento {
       id
-      arquivo {
-        bucket
-        key
-        region
-      }
+      arquivo
       titulo
       escala
-      verniz
       Tecnologia {
         id
         descricao
@@ -341,35 +431,34 @@ subscription OnUpdatePropostas($owner: String) {
         createdAt
         updatedAt
       }
-      situacao
       Proposta {
         nextToken
       }
+      situacao
+      observacao
+      usuario
       createdAt
       updatedAt
       owner
     }
+    idOrcamento
     prazo
     valor
     frete
+    responsavelProposta
     createdAt
     updatedAt
     owner
   }
 }
-subscription OnDeletePropostas($owner: String) {
-  onDeletePropostas(owner: $owner) {
+subscription OnDeletePropostas {
+  onDeletePropostas {
     id
     Orcamento {
       id
-      arquivo {
-        bucket
-        key
-        region
-      }
+      arquivo
       titulo
       escala
-      verniz
       Tecnologia {
         id
         descricao
@@ -394,17 +483,21 @@ subscription OnDeletePropostas($owner: String) {
         createdAt
         updatedAt
       }
-      situacao
       Proposta {
         nextToken
       }
+      situacao
+      observacao
+      usuario
       createdAt
       updatedAt
       owner
     }
+    idOrcamento
     prazo
     valor
     frete
+    responsavelProposta
     createdAt
     updatedAt
     owner

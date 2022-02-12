@@ -8,7 +8,8 @@
       <span style="flex: 0.2 0.2 auto;"></span>
       <a mat-button style="color: black;" (click)="acaoBtnInicio()">Início</a>&nbsp;
       <a mat-button style="color: black;" *ngIf="isUsuario()" (click)="acaoBtnOrcamento()">Solicitar orçamento</a>
-      <a mat-button style="color: black;" *ngIf="isUsuario()">Meus orçamentos</a>
+      <a mat-button style="color: black;" *ngIf="isUsuario()" (click)="acaoBotaoMeusOrcamentos()">Meus orçamentos</a>
+      <a mat-button style="color: black;" *ngIf="isAdmin() || isParceiro()" (click)="acaoBotaoMeusOrcamentos()">Orçamentos</a>
       <span style="flex: 1 1 auto;"></span>
       <a mat-button style="color: black;" *ngIf="authenticator.route === 'authenticated'" (click)="acaoBtnLogin()">Meus
         Dados</a>
@@ -22,7 +23,7 @@
         </mat-menu>
       
       <a mat-button style="color: black;" *ngIf="authenticator.route !== 'authenticated'"
-        (click)="acaoBtnLogin()">Criar conta</a>
+        (click)="acaoBtnLogin()">Acessar</a>
     
       <a mat-button style="color: black;" *ngIf="authenticator.route === 'authenticated'"
         (click)="logout()">Logout</a>

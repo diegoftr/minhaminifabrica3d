@@ -56,6 +56,10 @@ export class AppComponent extends BaseComponent {
       this.router.navigate(['/home']);
   }
 
+  acaoBotaoMeusOrcamentos() {
+    this.router.navigate(['/meusOrcamentos']);
+  }
+  
   acaoBtnAcabamento() {
     this.router.navigate(['/acabamento']);
   }
@@ -64,10 +68,8 @@ export class AppComponent extends BaseComponent {
     this.router.navigate(['/tecnologia']);
   }
 
-
   acaoBtnCor() {
     this.router.navigate(['/cor']);
   }
-  
 
 }

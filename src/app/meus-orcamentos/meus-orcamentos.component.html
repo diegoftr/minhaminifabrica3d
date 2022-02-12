@@ -1,0 +1,49 @@
+<div id="divCentro">
+    <br>
+    <form id="form" [formGroup]="form">
+        <h1 *ngIf="isUsuario()"><b>Meus Orçamentos</b></h1>
+        <h1 *ngIf="!isUsuario()"><b>Orçamentos</b></h1>
+        <br>
+        <table class="tabela">
+            <tr class="linhaTabela">
+                <td class="colunaTabela" style="background-color: #35cbfb;">
+                    <b>Titulo</b>
+                </td>
+                <td class="colunaTabela" style="background-color: #35cbfb;">
+                    <b>Usuário</b>
+                </td>
+                <td class="colunaTabela" style="background-color: #35cbfb;">
+                    <b>Tecnologia</b>
+                </td>
+                <td class="colunaTabela" style="background-color: #35cbfb;">
+                    <b>Material</b>
+                </td>
+                <td class="colunaTabela" style="background-color: #35cbfb;">
+                    <b>Data Criação</b>
+                </td>
+                <td class="colunaTabela" style="background-color: red;">
+                </td>
+            </tr>
+            <tr class="linhaTabela" *ngFor="let orcamento of orcamentos; let i = index">
+                <td class="colunaTabela">
+                    <a (click)="carregarOrcamento(orcamento.id)" style="color: blue; cursor:pointer;">{{orcamento.titulo}}</a>
+                </td>
+                <td class="colunaTabela">
+                    {{orcamento.usuario}}
+                </td>
+                <td class="colunaTabela">
+                    {{orcamento.Tecnologia!.descricao}}
+                </td>
+                <td class="colunaTabela">
+                    {{orcamento.Material!.descricao}}
+                </td>
+                <td class="colunaTabela">
+                    {{formatarData(orcamento.createdAt)}}
+                </td>
+                <td class="colunaTabela">
+                    <a (click)="removerOrcamento(orcamento.id)" style="color: red; cursor:pointer;">X</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

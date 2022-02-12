@@ -98,6 +98,122 @@ export type DeleteEnderecosInput = {
   id: string;
 };
 
+export type CreateChatsInput = {
+  id?: string | null;
+  usuarioEnvio: string;
+  idProposta: string;
+  msg: string;
+  chatsPropostaId?: string | null;
+};
+
+export type ModelChatsConditionInput = {
+  usuarioEnvio?: ModelStringInput | null;
+  idProposta?: ModelStringInput | null;
+  msg?: ModelStringInput | null;
+  and?: Array<ModelChatsConditionInput | null> | null;
+  or?: Array<ModelChatsConditionInput | null> | null;
+  not?: ModelChatsConditionInput | null;
+};
+
+export type Chats = {
+  __typename: "Chats";
+  id: string;
+  usuarioEnvio: string;
+  Proposta?: Propostas | null;
+  idProposta: string;
+  msg: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type Propostas = {
+  __typename: "Propostas";
+  id: string;
+  Orcamento?: Orcamentos | null;
+  idOrcamento: string;
+  prazo: string;
+  valor: string;
+  frete: string;
+  responsavelProposta: string;
+  createdAt: string;
+  updatedAt: string;
+  owner?: string | null;
+};
+
+export type Orcamentos = {
+  __typename: "Orcamentos";
+  id: string;
+  arquivo: string;
+  titulo: string;
+  escala: number;
+  Tecnologia: Tecnologias;
+  Material: Materiais;
+  Acabamento: Acabamentos;
+  Cor: Cores;
+  Proposta?: ModelPropostasConnection | null;
+  situacao: SituacaoOrcamento;
+  observacao?: string | null;
+  usuario: string;
+  createdAt: string;
+  updatedAt: string;
+  owner?: string | null;
+};
+
+export type Tecnologias = {
+  __typename: "Tecnologias";
+  id: string;
+  descricao: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type Materiais = {
+  __typename: "Materiais";
+  id: string;
+  descricao: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type Acabamentos = {
+  __typename: "Acabamentos";
+  id: string;
+  descricao: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type Cores = {
+  __typename: "Cores";
+  id: string;
+  descricao: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ModelPropostasConnection = {
+  __typename: "ModelPropostasConnection";
+  items?: Array<Propostas | null> | null;
+  nextToken?: string | null;
+};
+
+export enum SituacaoOrcamento {
+  ATIVO = "ATIVO",
+  ENCERADO = "ENCERADO"
+}
+
+export type UpdateChatsInput = {
+  id: string;
+  usuarioEnvio?: string | null;
+  idProposta?: string | null;
+  msg?: string | null;
+  chatsPropostaId?: string | null;
+};
+
+export type DeleteChatsInput = {
+  id: string;
+};
+
 export type CreateUsuariosInput = {
   id?: string | null;
   cpf: string;
@@ -141,45 +257,28 @@ export type DeleteUsuariosInput = {
 
 export type CreateOrcamentosInput = {
   id?: string | null;
-  arquivo: S3ObjectInput;
+  arquivo: string;
   titulo: string;
   escala: number;
-  verniz: boolean;
   situacao: SituacaoOrcamento;
-  orcamentosTecnologiaId?: string | null;
-  orcamentosMaterialId?: string | null;
-  orcamentosAcabamentoId?: string | null;
-  orcamentosCorId?: string | null;
+  observacao?: string | null;
+  usuario: string;
+  orcamentosTecnologiaId: string;
+  orcamentosMaterialId: string;
+  orcamentosAcabamentoId: string;
+  orcamentosCorId: string;
 };
-
-export type S3ObjectInput = {
-  bucket: string;
-  key: string;
-  region: string;
-  localUri?: string | null;
-  mimeType?: string | null;
-};
-
-export enum SituacaoOrcamento {
-  ATIVO = "ATIVO",
-  ENCERADO = "ENCERADO"
-}
 
 export type ModelOrcamentosConditionInput = {
+  arquivo?: ModelStringInput | null;
   titulo?: ModelStringInput | null;
   escala?: ModelIntInput | null;
-  verniz?: ModelBooleanInput | null;
   situacao?: ModelSituacaoOrcamentoInput | null;
+  observacao?: ModelStringInput | null;
+  usuario?: ModelStringInput | null;
   and?: Array<ModelOrcamentosConditionInput | null> | null;
   or?: Array<ModelOrcamentosConditionInput | null> | null;
   not?: ModelOrcamentosConditionInput | null;
-};
-
-export type ModelBooleanInput = {
-  ne?: boolean | null;
-  eq?: boolean | null;
-  attributeExists?: boolean | null;
-  attributeType?: ModelAttributeTypes | null;
 };
 
 export type ModelSituacaoOrcamentoInput = {
@@ -187,88 +286,14 @@ export type ModelSituacaoOrcamentoInput = {
   ne?: SituacaoOrcamento | null;
 };
 
-export type Orcamentos = {
-  __typename: "Orcamentos";
-  id: string;
-  arquivo: S3Object;
-  titulo: string;
-  escala: number;
-  verniz: boolean;
-  Tecnologia?: Tecnologias | null;
-  Material?: Materiais | null;
-  Acabamento?: Acabamentos | null;
-  Cor?: Cores | null;
-  situacao: SituacaoOrcamento;
-  Proposta?: ModelPropostasConnection | null;
-  createdAt: string;
-  updatedAt: string;
-  owner?: string | null;
-};
-
-export type S3Object = {
-  __typename: "S3Object";
-  bucket: string;
-  key: string;
-  region: string;
-};
-
-export type Tecnologias = {
-  __typename: "Tecnologias";
-  id: string;
-  descricao: string;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type Materiais = {
-  __typename: "Materiais";
-  id: string;
-  descricao: string;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type Acabamentos = {
-  __typename: "Acabamentos";
-  id: string;
-  descricao: string;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type Cores = {
-  __typename: "Cores";
-  id: string;
-  descricao: string;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type ModelPropostasConnection = {
-  __typename: "ModelPropostasConnection";
-  items?: Array<Propostas | null> | null;
-  nextToken?: string | null;
-};
-
-export type Propostas = {
-  __typename: "Propostas";
-  id: string;
-  Orcamento?: Orcamentos | null;
-  prazo: string;
-  valor: string;
-  frete: string;
-  createdAt: string;
-  updatedAt: string;
-  owner?: string | null;
-};
-
 export type UpdateOrcamentosInput = {
   id: string;
-  arquivo?: S3ObjectInput | null;
+  arquivo?: string | null;
   titulo?: string | null;
   escala?: number | null;
-  verniz?: boolean | null;
   situacao?: SituacaoOrcamento | null;
+  observacao?: string | null;
+  usuario?: string | null;
   orcamentosTecnologiaId?: string | null;
   orcamentosMaterialId?: string | null;
   orcamentosAcabamentoId?: string | null;
@@ -281,17 +306,21 @@ export type DeleteOrcamentosInput = {
 
 export type CreatePropostasInput = {
   id?: string | null;
+  idOrcamento: string;
   prazo: string;
   valor: string;
   frete: string;
+  responsavelProposta: string;
   orcamentosPropostaId?: string | null;
   propostasOrcamentoId?: string | null;
 };
 
 export type ModelPropostasConditionInput = {
+  idOrcamento?: ModelStringInput | null;
   prazo?: ModelStringInput | null;
   valor?: ModelStringInput | null;
   frete?: ModelStringInput | null;
+  responsavelProposta?: ModelStringInput | null;
   and?: Array<ModelPropostasConditionInput | null> | null;
   or?: Array<ModelPropostasConditionInput | null> | null;
   not?: ModelPropostasConditionInput | null;
@@ -299,9 +328,11 @@ export type ModelPropostasConditionInput = {
 
 export type UpdatePropostasInput = {
   id: string;
+  idOrcamento?: string | null;
   prazo?: string | null;
   valor?: string | null;
   frete?: string | null;
+  responsavelProposta?: string | null;
   orcamentosPropostaId?: string | null;
   propostasOrcamentoId?: string | null;
 };
@@ -426,6 +457,22 @@ export type ModelEnderecosConnection = {
   nextToken?: string | null;
 };
 
+export type ModelChatsFilterInput = {
+  id?: ModelIDInput | null;
+  usuarioEnvio?: ModelStringInput | null;
+  idProposta?: ModelStringInput | null;
+  msg?: ModelStringInput | null;
+  and?: Array<ModelChatsFilterInput | null> | null;
+  or?: Array<ModelChatsFilterInput | null> | null;
+  not?: ModelChatsFilterInput | null;
+};
+
+export type ModelChatsConnection = {
+  __typename: "ModelChatsConnection";
+  items?: Array<Chats | null> | null;
+  nextToken?: string | null;
+};
+
 export type ModelUsuariosFilterInput = {
   id?: ModelIDInput | null;
   cpf?: ModelStringInput | null;
@@ -444,10 +491,12 @@ export type ModelUsuariosConnection = {
 
 export type ModelOrcamentosFilterInput = {
   id?: ModelIDInput | null;
+  arquivo?: ModelStringInput | null;
   titulo?: ModelStringInput | null;
   escala?: ModelIntInput | null;
-  verniz?: ModelBooleanInput | null;
   situacao?: ModelSituacaoOrcamentoInput | null;
+  observacao?: ModelStringInput | null;
+  usuario?: ModelStringInput | null;
   and?: Array<ModelOrcamentosFilterInput | null> | null;
   or?: Array<ModelOrcamentosFilterInput | null> | null;
   not?: ModelOrcamentosFilterInput | null;
@@ -461,9 +510,11 @@ export type ModelOrcamentosConnection = {
 
 export type ModelPropostasFilterInput = {
   id?: ModelIDInput | null;
+  idOrcamento?: ModelStringInput | null;
   prazo?: ModelStringInput | null;
   valor?: ModelStringInput | null;
   frete?: ModelStringInput | null;
+  responsavelProposta?: ModelStringInput | null;
   and?: Array<ModelPropostasFilterInput | null> | null;
   or?: Array<ModelPropostasFilterInput | null> | null;
   not?: ModelPropostasFilterInput | null;
@@ -558,6 +609,111 @@ export type DeleteEnderecosMutation = {
   owner?: string | null;
 };
 
+export type CreateChatsMutation = {
+  __typename: "Chats";
+  id: string;
+  usuarioEnvio: string;
+  Proposta?: {
+    __typename: "Propostas";
+    id: string;
+    Orcamento?: {
+      __typename: "Orcamentos";
+      id: string;
+      arquivo: string;
+      titulo: string;
+      escala: number;
+      situacao: SituacaoOrcamento;
+      observacao?: string | null;
+      usuario: string;
+      createdAt: string;
+      updatedAt: string;
+      owner?: string | null;
+    } | null;
+    idOrcamento: string;
+    prazo: string;
+    valor: string;
+    frete: string;
+    responsavelProposta: string;
+    createdAt: string;
+    updatedAt: string;
+    owner?: string | null;
+  } | null;
+  idProposta: string;
+  msg: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateChatsMutation = {
+  __typename: "Chats";
+  id: string;
+  usuarioEnvio: string;
+  Proposta?: {
+    __typename: "Propostas";
+    id: string;
+    Orcamento?: {
+      __typename: "Orcamentos";
+      id: string;
+      arquivo: string;
+      titulo: string;
+      escala: number;
+      situacao: SituacaoOrcamento;
+      observacao?: string | null;
+      usuario: string;
+      createdAt: string;
+      updatedAt: string;
+      owner?: string | null;
+    } | null;
+    idOrcamento: string;
+    prazo: string;
+    valor: string;
+    frete: string;
+    responsavelProposta: string;
+    createdAt: string;
+    updatedAt: string;
+    owner?: string | null;
+  } | null;
+  idProposta: string;
+  msg: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteChatsMutation = {
+  __typename: "Chats";
+  id: string;
+  usuarioEnvio: string;
+  Proposta?: {
+    __typename: "Propostas";
+    id: string;
+    Orcamento?: {
+      __typename: "Orcamentos";
+      id: string;
+      arquivo: string;
+      titulo: string;
+      escala: number;
+      situacao: SituacaoOrcamento;
+      observacao?: string | null;
+      usuario: string;
+      createdAt: string;
+      updatedAt: string;
+      owner?: string | null;
+    } | null;
+    idOrcamento: string;
+    prazo: string;
+    valor: string;
+    frete: string;
+    responsavelProposta: string;
+    createdAt: string;
+    updatedAt: string;
+    owner?: string | null;
+  } | null;
+  idProposta: string;
+  msg: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
 export type CreateUsuariosMutation = {
   __typename: "Usuarios";
   id: string;
@@ -624,58 +780,56 @@ export type DeleteUsuariosMutation = {
 export type CreateOrcamentosMutation = {
   __typename: "Orcamentos";
   id: string;
-  arquivo: {
-    __typename: "S3Object";
-    bucket: string;
-    key: string;
-    region: string;
-  };
+  arquivo: string;
   titulo: string;
   escala: number;
-  verniz: boolean;
-  Tecnologia?: {
+  Tecnologia: {
     __typename: "Tecnologias";
     id: string;
     descricao: string;
     createdAt: string;
     updatedAt: string;
-  } | null;
-  Material?: {
+  };
+  Material: {
     __typename: "Materiais";
     id: string;
     descricao: string;
     createdAt: string;
     updatedAt: string;
-  } | null;
-  Acabamento?: {
+  };
+  Acabamento: {
     __typename: "Acabamentos";
     id: string;
     descricao: string;
     createdAt: string;
     updatedAt: string;
-  } | null;
-  Cor?: {
+  };
+  Cor: {
     __typename: "Cores";
     id: string;
     descricao: string;
     createdAt: string;
     updatedAt: string;
-  } | null;
-  situacao: SituacaoOrcamento;
+  };
   Proposta?: {
     __typename: "ModelPropostasConnection";
     items?: Array<{
       __typename: "Propostas";
       id: string;
+      idOrcamento: string;
       prazo: string;
       valor: string;
       frete: string;
+      responsavelProposta: string;
       createdAt: string;
       updatedAt: string;
       owner?: string | null;
     } | null> | null;
     nextToken?: string | null;
   } | null;
+  situacao: SituacaoOrcamento;
+  observacao?: string | null;
+  usuario: string;
   createdAt: string;
   updatedAt: string;
   owner?: string | null;
@@ -684,58 +838,56 @@ export type CreateOrcamentosMutation = {
 export type UpdateOrcamentosMutation = {
   __typename: "Orcamentos";
   id: string;
-  arquivo: {
-    __typename: "S3Object";
-    bucket: string;
-    key: string;
-    region: string;
-  };
+  arquivo: string;
   titulo: string;
   escala: number;
-  verniz: boolean;
-  Tecnologia?: {
+  Tecnologia: {
     __typename: "Tecnologias";
     id: string;
     descricao: string;
     createdAt: string;
     updatedAt: string;
-  } | null;
-  Material?: {
+  };
+  Material: {
     __typename: "Materiais";
     id: string;
     descricao: string;
     createdAt: string;
     updatedAt: string;
-  } | null;
-  Acabamento?: {
+  };
+  Acabamento: {
     __typename: "Acabamentos";
     id: string;
     descricao: string;
     createdAt: string;
     updatedAt: string;
-  } | null;
-  Cor?: {
+  };
+  Cor: {
     __typename: "Cores";
     id: string;
     descricao: string;
     createdAt: string;
     updatedAt: string;
-  } | null;
-  situacao: SituacaoOrcamento;
+  };
   Proposta?: {
     __typename: "ModelPropostasConnection";
     items?: Array<{
       __typename: "Propostas";
       id: string;
+      idOrcamento: string;
       prazo: string;
       valor: string;
       frete: string;
+      responsavelProposta: string;
       createdAt: string;
       updatedAt: string;
       owner?: string | null;
     } | null> | null;
     nextToken?: string | null;
   } | null;
+  situacao: SituacaoOrcamento;
+  observacao?: string | null;
+  usuario: string;
   createdAt: string;
   updatedAt: string;
   owner?: string | null;
@@ -744,58 +896,56 @@ export type UpdateOrcamentosMutation = {
 export type DeleteOrcamentosMutation = {
   __typename: "Orcamentos";
   id: string;
-  arquivo: {
-    __typename: "S3Object";
-    bucket: string;
-    key: string;
-    region: string;
-  };
+  arquivo: string;
   titulo: string;
   escala: number;
-  verniz: boolean;
-  Tecnologia?: {
+  Tecnologia: {
     __typename: "Tecnologias";
     id: string;
     descricao: string;
     createdAt: string;
     updatedAt: string;
-  } | null;
-  Material?: {
+  };
+  Material: {
     __typename: "Materiais";
     id: string;
     descricao: string;
     createdAt: string;
     updatedAt: string;
-  } | null;
-  Acabamento?: {
+  };
+  Acabamento: {
     __typename: "Acabamentos";
     id: string;
     descricao: string;
     createdAt: string;
     updatedAt: string;
-  } | null;
-  Cor?: {
+  };
+  Cor: {
     __typename: "Cores";
     id: string;
     descricao: string;
     createdAt: string;
     updatedAt: string;
-  } | null;
-  situacao: SituacaoOrcamento;
+  };
   Proposta?: {
     __typename: "ModelPropostasConnection";
     items?: Array<{
       __typename: "Propostas";
       id: string;
+      idOrcamento: string;
       prazo: string;
       valor: string;
       frete: string;
+      responsavelProposta: string;
       createdAt: string;
       updatedAt: string;
       owner?: string | null;
     } | null> | null;
     nextToken?: string | null;
   } | null;
+  situacao: SituacaoOrcamento;
+  observacao?: string | null;
+  usuario: string;
   createdAt: string;
   updatedAt: string;
   owner?: string | null;
@@ -807,55 +957,53 @@ export type CreatePropostasMutation = {
   Orcamento?: {
     __typename: "Orcamentos";
     id: string;
-    arquivo: {
-      __typename: "S3Object";
-      bucket: string;
-      key: string;
-      region: string;
-    };
+    arquivo: string;
     titulo: string;
     escala: number;
-    verniz: boolean;
-    Tecnologia?: {
+    Tecnologia: {
       __typename: "Tecnologias";
       id: string;
       descricao: string;
       createdAt: string;
       updatedAt: string;
-    } | null;
-    Material?: {
+    };
+    Material: {
       __typename: "Materiais";
       id: string;
       descricao: string;
       createdAt: string;
       updatedAt: string;
-    } | null;
-    Acabamento?: {
+    };
+    Acabamento: {
       __typename: "Acabamentos";
       id: string;
       descricao: string;
       createdAt: string;
       updatedAt: string;
-    } | null;
-    Cor?: {
+    };
+    Cor: {
       __typename: "Cores";
       id: string;
       descricao: string;
       createdAt: string;
       updatedAt: string;
-    } | null;
-    situacao: SituacaoOrcamento;
+    };
     Proposta?: {
       __typename: "ModelPropostasConnection";
       nextToken?: string | null;
     } | null;
+    situacao: SituacaoOrcamento;
+    observacao?: string | null;
+    usuario: string;
     createdAt: string;
     updatedAt: string;
     owner?: string | null;
   } | null;
+  idOrcamento: string;
   prazo: string;
   valor: string;
   frete: string;
+  responsavelProposta: string;
   createdAt: string;
   updatedAt: string;
   owner?: string | null;
@@ -867,55 +1015,53 @@ export type UpdatePropostasMutation = {
   Orcamento?: {
     __typename: "Orcamentos";
     id: string;
-    arquivo: {
-      __typename: "S3Object";
-      bucket: string;
-      key: string;
-      region: string;
-    };
+    arquivo: string;
     titulo: string;
     escala: number;
-    verniz: boolean;
-    Tecnologia?: {
+    Tecnologia: {
       __typename: "Tecnologias";
       id: string;
       descricao: string;
       createdAt: string;
       updatedAt: string;
-    } | null;
-    Material?: {
+    };
+    Material: {
       __typename: "Materiais";
       id: string;
       descricao: string;
       createdAt: string;
       updatedAt: string;
-    } | null;
-    Acabamento?: {
+    };
+    Acabamento: {
       __typename: "Acabamentos";
       id: string;
       descricao: string;
       createdAt: string;
       updatedAt: string;
-    } | null;
-    Cor?: {
+    };
+    Cor: {
       __typename: "Cores";
       id: string;
       descricao: string;
       createdAt: string;
       updatedAt: string;
-    } | null;
-    situacao: SituacaoOrcamento;
+    };
     Proposta?: {
       __typename: "ModelPropostasConnection";
       nextToken?: string | null;
     } | null;
+    situacao: SituacaoOrcamento;
+    observacao?: string | null;
+    usuario: string;
     createdAt: string;
     updatedAt: string;
     owner?: string | null;
   } | null;
+  idOrcamento: string;
   prazo: string;
   valor: string;
   frete: string;
+  responsavelProposta: string;
   createdAt: string;
   updatedAt: string;
   owner?: string | null;
@@ -927,55 +1073,53 @@ export type DeletePropostasMutation = {
   Orcamento?: {
     __typename: "Orcamentos";
     id: string;
-    arquivo: {
-      __typename: "S3Object";
-      bucket: string;
-      key: string;
-      region: string;
-    };
+    arquivo: string;
     titulo: string;
     escala: number;
-    verniz: boolean;
-    Tecnologia?: {
+    Tecnologia: {
       __typename: "Tecnologias";
       id: string;
       descricao: string;
       createdAt: string;
       updatedAt: string;
-    } | null;
-    Material?: {
+    };
+    Material: {
       __typename: "Materiais";
       id: string;
       descricao: string;
       createdAt: string;
       updatedAt: string;
-    } | null;
-    Acabamento?: {
+    };
+    Acabamento: {
       __typename: "Acabamentos";
       id: string;
       descricao: string;
       createdAt: string;
       updatedAt: string;
-    } | null;
-    Cor?: {
+    };
+    Cor: {
       __typename: "Cores";
       id: string;
       descricao: string;
       createdAt: string;
       updatedAt: string;
-    } | null;
-    situacao: SituacaoOrcamento;
+    };
     Proposta?: {
       __typename: "ModelPropostasConnection";
       nextToken?: string | null;
     } | null;
+    situacao: SituacaoOrcamento;
+    observacao?: string | null;
+    usuario: string;
     createdAt: string;
     updatedAt: string;
     owner?: string | null;
   } | null;
+  idOrcamento: string;
   prazo: string;
   valor: string;
   frete: string;
+  responsavelProposta: string;
   createdAt: string;
   updatedAt: string;
   owner?: string | null;
@@ -1103,6 +1247,67 @@ export type ListEnderecosQuery = {
   nextToken?: string | null;
 };
 
+export type GetChatsQuery = {
+  __typename: "Chats";
+  id: string;
+  usuarioEnvio: string;
+  Proposta?: {
+    __typename: "Propostas";
+    id: string;
+    Orcamento?: {
+      __typename: "Orcamentos";
+      id: string;
+      arquivo: string;
+      titulo: string;
+      escala: number;
+      situacao: SituacaoOrcamento;
+      observacao?: string | null;
+      usuario: string;
+      createdAt: string;
+      updatedAt: string;
+      owner?: string | null;
+    } | null;
+    idOrcamento: string;
+    prazo: string;
+    valor: string;
+    frete: string;
+    responsavelProposta: string;
+    createdAt: string;
+    updatedAt: string;
+    owner?: string | null;
+  } | null;
+  idProposta: string;
+  msg: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ListChatsQuery = {
+  __typename: "ModelChatsConnection";
+  items?: Array<{
+    __typename: "Chats";
+    id: string;
+    usuarioEnvio: string;
+    Proposta?: {
+      __typename: "Propostas";
+      id: string;
+      idOrcamento: string;
+      prazo: string;
+      valor: string;
+      frete: string;
+      responsavelProposta: string;
+      createdAt: string;
+      updatedAt: string;
+      owner?: string | null;
+    } | null;
+    idProposta: string;
+    msg: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken?: string | null;
+};
+
 export type GetUsuariosQuery = {
   __typename: "Usuarios";
   id: string;
@@ -1152,58 +1357,56 @@ export type ListUsuariosQuery = {
 export type GetOrcamentosQuery = {
   __typename: "Orcamentos";
   id: string;
-  arquivo: {
-    __typename: "S3Object";
-    bucket: string;
-    key: string;
-    region: string;
-  };
+  arquivo: string;
   titulo: string;
   escala: number;
-  verniz: boolean;
-  Tecnologia?: {
+  Tecnologia: {
     __typename: "Tecnologias";
     id: string;
     descricao: string;
     createdAt: string;
     updatedAt: string;
-  } | null;
-  Material?: {
+  };
+  Material: {
     __typename: "Materiais";
     id: string;
     descricao: string;
     createdAt: string;
     updatedAt: string;
-  } | null;
-  Acabamento?: {
+  };
+  Acabamento: {
     __typename: "Acabamentos";
     id: string;
     descricao: string;
     createdAt: string;
     updatedAt: string;
-  } | null;
-  Cor?: {
+  };
+  Cor: {
     __typename: "Cores";
     id: string;
     descricao: string;
     createdAt: string;
     updatedAt: string;
-  } | null;
-  situacao: SituacaoOrcamento;
+  };
   Proposta?: {
     __typename: "ModelPropostasConnection";
     items?: Array<{
       __typename: "Propostas";
       id: string;
+      idOrcamento: string;
       prazo: string;
       valor: string;
       frete: string;
+      responsavelProposta: string;
       createdAt: string;
       updatedAt: string;
       owner?: string | null;
     } | null> | null;
     nextToken?: string | null;
   } | null;
+  situacao: SituacaoOrcamento;
+  observacao?: string | null;
+  usuario: string;
   createdAt: string;
   updatedAt: string;
   owner?: string | null;
@@ -1214,48 +1417,44 @@ export type ListOrcamentosQuery = {
   items?: Array<{
     __typename: "Orcamentos";
     id: string;
-    arquivo: {
-      __typename: "S3Object";
-      bucket: string;
-      key: string;
-      region: string;
-    };
+    arquivo: string;
     titulo: string;
     escala: number;
-    verniz: boolean;
-    Tecnologia?: {
+    Tecnologia: {
       __typename: "Tecnologias";
       id: string;
       descricao: string;
       createdAt: string;
       updatedAt: string;
-    } | null;
-    Material?: {
+    };
+    Material: {
       __typename: "Materiais";
       id: string;
       descricao: string;
       createdAt: string;
       updatedAt: string;
-    } | null;
-    Acabamento?: {
+    };
+    Acabamento: {
       __typename: "Acabamentos";
       id: string;
       descricao: string;
       createdAt: string;
       updatedAt: string;
-    } | null;
-    Cor?: {
+    };
+    Cor: {
       __typename: "Cores";
       id: string;
       descricao: string;
       createdAt: string;
       updatedAt: string;
-    } | null;
-    situacao: SituacaoOrcamento;
+    };
     Proposta?: {
       __typename: "ModelPropostasConnection";
       nextToken?: string | null;
     } | null;
+    situacao: SituacaoOrcamento;
+    observacao?: string | null;
+    usuario: string;
     createdAt: string;
     updatedAt: string;
     owner?: string | null;
@@ -1269,55 +1468,53 @@ export type GetPropostasQuery = {
   Orcamento?: {
     __typename: "Orcamentos";
     id: string;
-    arquivo: {
-      __typename: "S3Object";
-      bucket: string;
-      key: string;
-      region: string;
-    };
+    arquivo: string;
     titulo: string;
     escala: number;
-    verniz: boolean;
-    Tecnologia?: {
+    Tecnologia: {
       __typename: "Tecnologias";
       id: string;
       descricao: string;
       createdAt: string;
       updatedAt: string;
-    } | null;
-    Material?: {
+    };
+    Material: {
       __typename: "Materiais";
       id: string;
       descricao: string;
       createdAt: string;
       updatedAt: string;
-    } | null;
-    Acabamento?: {
+    };
+    Acabamento: {
       __typename: "Acabamentos";
       id: string;
       descricao: string;
       createdAt: string;
       updatedAt: string;
-    } | null;
-    Cor?: {
+    };
+    Cor: {
       __typename: "Cores";
       id: string;
       descricao: string;
       createdAt: string;
       updatedAt: string;
-    } | null;
-    situacao: SituacaoOrcamento;
+    };
     Proposta?: {
       __typename: "ModelPropostasConnection";
       nextToken?: string | null;
     } | null;
+    situacao: SituacaoOrcamento;
+    observacao?: string | null;
+    usuario: string;
     createdAt: string;
     updatedAt: string;
     owner?: string | null;
   } | null;
+  idOrcamento: string;
   prazo: string;
   valor: string;
   frete: string;
+  responsavelProposta: string;
   createdAt: string;
   updatedAt: string;
   owner?: string | null;
@@ -1331,17 +1528,21 @@ export type ListPropostasQuery = {
     Orcamento?: {
       __typename: "Orcamentos";
       id: string;
+      arquivo: string;
       titulo: string;
       escala: number;
-      verniz: boolean;
       situacao: SituacaoOrcamento;
+      observacao?: string | null;
+      usuario: string;
       createdAt: string;
       updatedAt: string;
       owner?: string | null;
     } | null;
+    idOrcamento: string;
     prazo: string;
     valor: string;
     frete: string;
+    responsavelProposta: string;
     createdAt: string;
     updatedAt: string;
     owner?: string | null;
@@ -1462,6 +1663,111 @@ export type OnDeleteEnderecosSubscription = {
   owner?: string | null;
 };
 
+export type OnCreateChatsSubscription = {
+  __typename: "Chats";
+  id: string;
+  usuarioEnvio: string;
+  Proposta?: {
+    __typename: "Propostas";
+    id: string;
+    Orcamento?: {
+      __typename: "Orcamentos";
+      id: string;
+      arquivo: string;
+      titulo: string;
+      escala: number;
+      situacao: SituacaoOrcamento;
+      observacao?: string | null;
+      usuario: string;
+      createdAt: string;
+      updatedAt: string;
+      owner?: string | null;
+    } | null;
+    idOrcamento: string;
+    prazo: string;
+    valor: string;
+    frete: string;
+    responsavelProposta: string;
+    createdAt: string;
+    updatedAt: string;
+    owner?: string | null;
+  } | null;
+  idProposta: string;
+  msg: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateChatsSubscription = {
+  __typename: "Chats";
+  id: string;
+  usuarioEnvio: string;
+  Proposta?: {
+    __typename: "Propostas";
+    id: string;
+    Orcamento?: {
+      __typename: "Orcamentos";
+      id: string;
+      arquivo: string;
+      titulo: string;
+      escala: number;
+      situacao: SituacaoOrcamento;
+      observacao?: string | null;
+      usuario: string;
+      createdAt: string;
+      updatedAt: string;
+      owner?: string | null;
+    } | null;
+    idOrcamento: string;
+    prazo: string;
+    valor: string;
+    frete: string;
+    responsavelProposta: string;
+    createdAt: string;
+    updatedAt: string;
+    owner?: string | null;
+  } | null;
+  idProposta: string;
+  msg: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteChatsSubscription = {
+  __typename: "Chats";
+  id: string;
+  usuarioEnvio: string;
+  Proposta?: {
+    __typename: "Propostas";
+    id: string;
+    Orcamento?: {
+      __typename: "Orcamentos";
+      id: string;
+      arquivo: string;
+      titulo: string;
+      escala: number;
+      situacao: SituacaoOrcamento;
+      observacao?: string | null;
+      usuario: string;
+      createdAt: string;
+      updatedAt: string;
+      owner?: string | null;
+    } | null;
+    idOrcamento: string;
+    prazo: string;
+    valor: string;
+    frete: string;
+    responsavelProposta: string;
+    createdAt: string;
+    updatedAt: string;
+    owner?: string | null;
+  } | null;
+  idProposta: string;
+  msg: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
 export type OnCreateUsuariosSubscription = {
   __typename: "Usuarios";
   id: string;
@@ -1528,58 +1834,56 @@ export type OnDeleteUsuariosSubscription = {
 export type OnCreateOrcamentosSubscription = {
   __typename: "Orcamentos";
   id: string;
-  arquivo: {
-    __typename: "S3Object";
-    bucket: string;
-    key: string;
-    region: string;
-  };
+  arquivo: string;
   titulo: string;
   escala: number;
-  verniz: boolean;
-  Tecnologia?: {
+  Tecnologia: {
     __typename: "Tecnologias";
     id: string;
     descricao: string;
     createdAt: string;
     updatedAt: string;
-  } | null;
-  Material?: {
+  };
+  Material: {
     __typename: "Materiais";
     id: string;
     descricao: string;
     createdAt: string;
     updatedAt: string;
-  } | null;
-  Acabamento?: {
+  };
+  Acabamento: {
     __typename: "Acabamentos";
     id: string;
     descricao: string;
     createdAt: string;
     updatedAt: string;
-  } | null;
-  Cor?: {
+  };
+  Cor: {
     __typename: "Cores";
     id: string;
     descricao: string;
     createdAt: string;
     updatedAt: string;
-  } | null;
-  situacao: SituacaoOrcamento;
+  };
   Proposta?: {
     __typename: "ModelPropostasConnection";
     items?: Array<{
       __typename: "Propostas";
       id: string;
+      idOrcamento: string;
       prazo: string;
       valor: string;
       frete: string;
+      responsavelProposta: string;
       createdAt: string;
       updatedAt: string;
       owner?: string | null;
     } | null> | null;
     nextToken?: string | null;
   } | null;
+  situacao: SituacaoOrcamento;
+  observacao?: string | null;
+  usuario: string;
   createdAt: string;
   updatedAt: string;
   owner?: string | null;
@@ -1588,58 +1892,56 @@ export type OnCreateOrcamentosSubscription = {
 export type OnUpdateOrcamentosSubscription = {
   __typename: "Orcamentos";
   id: string;
-  arquivo: {
-    __typename: "S3Object";
-    bucket: string;
-    key: string;
-    region: string;
-  };
+  arquivo: string;
   titulo: string;
   escala: number;
-  verniz: boolean;
-  Tecnologia?: {
+  Tecnologia: {
     __typename: "Tecnologias";
     id: string;
     descricao: string;
     createdAt: string;
     updatedAt: string;
-  } | null;
-  Material?: {
+  };
+  Material: {
     __typename: "Materiais";
     id: string;
     descricao: string;
     createdAt: string;
     updatedAt: string;
-  } | null;
-  Acabamento?: {
+  };
+  Acabamento: {
     __typename: "Acabamentos";
     id: string;
     descricao: string;
     createdAt: string;
     updatedAt: string;
-  } | null;
-  Cor?: {
+  };
+  Cor: {
     __typename: "Cores";
     id: string;
     descricao: string;
     createdAt: string;
     updatedAt: string;
-  } | null;
-  situacao: SituacaoOrcamento;
+  };
   Proposta?: {
     __typename: "ModelPropostasConnection";
     items?: Array<{
       __typename: "Propostas";
       id: string;
+      idOrcamento: string;
       prazo: string;
       valor: string;
       frete: string;
+      responsavelProposta: string;
       createdAt: string;
       updatedAt: string;
       owner?: string | null;
     } | null> | null;
     nextToken?: string | null;
   } | null;
+  situacao: SituacaoOrcamento;
+  observacao?: string | null;
+  usuario: string;
   createdAt: string;
   updatedAt: string;
   owner?: string | null;
@@ -1648,58 +1950,56 @@ export type OnUpdateOrcamentosSubscription = {
 export type OnDeleteOrcamentosSubscription = {
   __typename: "Orcamentos";
   id: string;
-  arquivo: {
-    __typename: "S3Object";
-    bucket: string;
-    key: string;
-    region: string;
-  };
+  arquivo: string;
   titulo: string;
   escala: number;
-  verniz: boolean;
-  Tecnologia?: {
+  Tecnologia: {
     __typename: "Tecnologias";
     id: string;
     descricao: string;
     createdAt: string;
     updatedAt: string;
-  } | null;
-  Material?: {
+  };
+  Material: {
     __typename: "Materiais";
     id: string;
     descricao: string;
     createdAt: string;
     updatedAt: string;
-  } | null;
-  Acabamento?: {
+  };
+  Acabamento: {
     __typename: "Acabamentos";
     id: string;
     descricao: string;
     createdAt: string;
     updatedAt: string;
-  } | null;
-  Cor?: {
+  };
+  Cor: {
     __typename: "Cores";
     id: string;
     descricao: string;
     createdAt: string;
     updatedAt: string;
-  } | null;
-  situacao: SituacaoOrcamento;
+  };
   Proposta?: {
     __typename: "ModelPropostasConnection";
     items?: Array<{
       __typename: "Propostas";
       id: string;
+      idOrcamento: string;
       prazo: string;
       valor: string;
       frete: string;
+      responsavelProposta: string;
       createdAt: string;
       updatedAt: string;
       owner?: string | null;
     } | null> | null;
     nextToken?: string | null;
   } | null;
+  situacao: SituacaoOrcamento;
+  observacao?: string | null;
+  usuario: string;
   createdAt: string;
   updatedAt: string;
   owner?: string | null;
@@ -1711,55 +2011,53 @@ export type OnCreatePropostasSubscription = {
   Orcamento?: {
     __typename: "Orcamentos";
     id: string;
-    arquivo: {
-      __typename: "S3Object";
-      bucket: string;
-      key: string;
-      region: string;
-    };
+    arquivo: string;
     titulo: string;
     escala: number;
-    verniz: boolean;
-    Tecnologia?: {
+    Tecnologia: {
       __typename: "Tecnologias";
       id: string;
       descricao: string;
       createdAt: string;
       updatedAt: string;
-    } | null;
-    Material?: {
+    };
+    Material: {
       __typename: "Materiais";
       id: string;
       descricao: string;
       createdAt: string;
       updatedAt: string;
-    } | null;
-    Acabamento?: {
+    };
+    Acabamento: {
       __typename: "Acabamentos";
       id: string;
       descricao: string;
       createdAt: string;
       updatedAt: string;
-    } | null;
-    Cor?: {
+    };
+    Cor: {
       __typename: "Cores";
       id: string;
       descricao: string;
       createdAt: string;
       updatedAt: string;
-    } | null;
-    situacao: SituacaoOrcamento;
+    };
     Proposta?: {
       __typename: "ModelPropostasConnection";
       nextToken?: string | null;
     } | null;
+    situacao: SituacaoOrcamento;
+    observacao?: string | null;
+    usuario: string;
     createdAt: string;
     updatedAt: string;
     owner?: string | null;
   } | null;
+  idOrcamento: string;
   prazo: string;
   valor: string;
   frete: string;
+  responsavelProposta: string;
   createdAt: string;
   updatedAt: string;
   owner?: string | null;
@@ -1771,55 +2069,53 @@ export type OnUpdatePropostasSubscription = {
   Orcamento?: {
     __typename: "Orcamentos";
     id: string;
-    arquivo: {
-      __typename: "S3Object";
-      bucket: string;
-      key: string;
-      region: string;
-    };
+    arquivo: string;
     titulo: string;
     escala: number;
-    verniz: boolean;
-    Tecnologia?: {
+    Tecnologia: {
       __typename: "Tecnologias";
       id: string;
       descricao: string;
       createdAt: string;
       updatedAt: string;
-    } | null;
-    Material?: {
+    };
+    Material: {
       __typename: "Materiais";
       id: string;
       descricao: string;
       createdAt: string;
       updatedAt: string;
-    } | null;
-    Acabamento?: {
+    };
+    Acabamento: {
       __typename: "Acabamentos";
       id: string;
       descricao: string;
       createdAt: string;
       updatedAt: string;
-    } | null;
-    Cor?: {
+    };
+    Cor: {
       __typename: "Cores";
       id: string;
       descricao: string;
       createdAt: string;
       updatedAt: string;
-    } | null;
-    situacao: SituacaoOrcamento;
+    };
     Proposta?: {
       __typename: "ModelPropostasConnection";
       nextToken?: string | null;
     } | null;
+    situacao: SituacaoOrcamento;
+    observacao?: string | null;
+    usuario: string;
     createdAt: string;
     updatedAt: string;
     owner?: string | null;
   } | null;
+  idOrcamento: string;
   prazo: string;
   valor: string;
   frete: string;
+  responsavelProposta: string;
   createdAt: string;
   updatedAt: string;
   owner?: string | null;
@@ -1831,55 +2127,53 @@ export type OnDeletePropostasSubscription = {
   Orcamento?: {
     __typename: "Orcamentos";
     id: string;
-    arquivo: {
-      __typename: "S3Object";
-      bucket: string;
-      key: string;
-      region: string;
-    };
+    arquivo: string;
     titulo: string;
     escala: number;
-    verniz: boolean;
-    Tecnologia?: {
+    Tecnologia: {
       __typename: "Tecnologias";
       id: string;
       descricao: string;
       createdAt: string;
       updatedAt: string;
-    } | null;
-    Material?: {
+    };
+    Material: {
       __typename: "Materiais";
       id: string;
       descricao: string;
       createdAt: string;
       updatedAt: string;
-    } | null;
-    Acabamento?: {
+    };
+    Acabamento: {
       __typename: "Acabamentos";
       id: string;
       descricao: string;
       createdAt: string;
       updatedAt: string;
-    } | null;
-    Cor?: {
+    };
+    Cor: {
       __typename: "Cores";
       id: string;
       descricao: string;
       createdAt: string;
       updatedAt: string;
-    } | null;
-    situacao: SituacaoOrcamento;
+    };
     Proposta?: {
       __typename: "ModelPropostasConnection";
       nextToken?: string | null;
     } | null;
+    situacao: SituacaoOrcamento;
+    observacao?: string | null;
+    usuario: string;
     createdAt: string;
     updatedAt: string;
     owner?: string | null;
   } | null;
+  idOrcamento: string;
   prazo: string;
   valor: string;
   frete: string;
+  responsavelProposta: string;
   createdAt: string;
   updatedAt: string;
   owner?: string | null;
@@ -2066,6 +2360,159 @@ export class APIService {
     )) as any;
     return <DeleteEnderecosMutation>response.data.deleteEnderecos;
   }
+  async CreateChats(
+    input: CreateChatsInput,
+    condition?: ModelChatsConditionInput
+  ): Promise<CreateChatsMutation> {
+    const statement = `mutation CreateChats($input: CreateChatsInput!, $condition: ModelChatsConditionInput) {
+        createChats(input: $input, condition: $condition) {
+          __typename
+          id
+          usuarioEnvio
+          Proposta {
+            __typename
+            id
+            Orcamento {
+              __typename
+              id
+              arquivo
+              titulo
+              escala
+              situacao
+              observacao
+              usuario
+              createdAt
+              updatedAt
+              owner
+            }
+            idOrcamento
+            prazo
+            valor
+            frete
+            responsavelProposta
+            createdAt
+            updatedAt
+            owner
+          }
+          idProposta
+          msg
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateChatsMutation>response.data.createChats;
+  }
+  async UpdateChats(
+    input: UpdateChatsInput,
+    condition?: ModelChatsConditionInput
+  ): Promise<UpdateChatsMutation> {
+    const statement = `mutation UpdateChats($input: UpdateChatsInput!, $condition: ModelChatsConditionInput) {
+        updateChats(input: $input, condition: $condition) {
+          __typename
+          id
+          usuarioEnvio
+          Proposta {
+            __typename
+            id
+            Orcamento {
+              __typename
+              id
+              arquivo
+              titulo
+              escala
+              situacao
+              observacao
+              usuario
+              createdAt
+              updatedAt
+              owner
+            }
+            idOrcamento
+            prazo
+            valor
+            frete
+            responsavelProposta
+            createdAt
+            updatedAt
+            owner
+          }
+          idProposta
+          msg
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateChatsMutation>response.data.updateChats;
+  }
+  async DeleteChats(
+    input: DeleteChatsInput,
+    condition?: ModelChatsConditionInput
+  ): Promise<DeleteChatsMutation> {
+    const statement = `mutation DeleteChats($input: DeleteChatsInput!, $condition: ModelChatsConditionInput) {
+        deleteChats(input: $input, condition: $condition) {
+          __typename
+          id
+          usuarioEnvio
+          Proposta {
+            __typename
+            id
+            Orcamento {
+              __typename
+              id
+              arquivo
+              titulo
+              escala
+              situacao
+              observacao
+              usuario
+              createdAt
+              updatedAt
+              owner
+            }
+            idOrcamento
+            prazo
+            valor
+            frete
+            responsavelProposta
+            createdAt
+            updatedAt
+            owner
+          }
+          idProposta
+          msg
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteChatsMutation>response.data.deleteChats;
+  }
   async CreateUsuarios(
     input: CreateUsuariosInput,
     condition?: ModelUsuariosConditionInput
@@ -2185,15 +2632,9 @@ export class APIService {
         createOrcamentos(input: $input, condition: $condition) {
           __typename
           id
-          arquivo {
-            __typename
-            bucket
-            key
-            region
-          }
+          arquivo
           titulo
           escala
-          verniz
           Tecnologia {
             __typename
             id
@@ -2222,21 +2663,25 @@ export class APIService {
             createdAt
             updatedAt
           }
-          situacao
           Proposta {
             __typename
             items {
               __typename
               id
+              idOrcamento
               prazo
               valor
               frete
+              responsavelProposta
               createdAt
               updatedAt
               owner
             }
             nextToken
           }
+          situacao
+          observacao
+          usuario
           createdAt
           updatedAt
           owner
@@ -2261,15 +2706,9 @@ export class APIService {
         updateOrcamentos(input: $input, condition: $condition) {
           __typename
           id
-          arquivo {
-            __typename
-            bucket
-            key
-            region
-          }
+          arquivo
           titulo
           escala
-          verniz
           Tecnologia {
             __typename
             id
@@ -2298,21 +2737,25 @@ export class APIService {
             createdAt
             updatedAt
           }
-          situacao
           Proposta {
             __typename
             items {
               __typename
               id
+              idOrcamento
               prazo
               valor
               frete
+              responsavelProposta
               createdAt
               updatedAt
               owner
             }
             nextToken
           }
+          situacao
+          observacao
+          usuario
           createdAt
           updatedAt
           owner
@@ -2337,15 +2780,9 @@ export class APIService {
         deleteOrcamentos(input: $input, condition: $condition) {
           __typename
           id
-          arquivo {
-            __typename
-            bucket
-            key
-            region
-          }
+          arquivo
           titulo
           escala
-          verniz
           Tecnologia {
             __typename
             id
@@ -2374,21 +2811,25 @@ export class APIService {
             createdAt
             updatedAt
           }
-          situacao
           Proposta {
             __typename
             items {
               __typename
               id
+              idOrcamento
               prazo
               valor
               frete
+              responsavelProposta
               createdAt
               updatedAt
               owner
             }
             nextToken
           }
+          situacao
+          observacao
+          usuario
           createdAt
           updatedAt
           owner
@@ -2416,15 +2857,9 @@ export class APIService {
           Orcamento {
             __typename
             id
-            arquivo {
-              __typename
-              bucket
-              key
-              region
-            }
+            arquivo
             titulo
             escala
-            verniz
             Tecnologia {
               __typename
               id
@@ -2453,18 +2888,22 @@ export class APIService {
               createdAt
               updatedAt
             }
-            situacao
             Proposta {
               __typename
               nextToken
             }
+            situacao
+            observacao
+            usuario
             createdAt
             updatedAt
             owner
           }
+          idOrcamento
           prazo
           valor
           frete
+          responsavelProposta
           createdAt
           updatedAt
           owner
@@ -2492,15 +2931,9 @@ export class APIService {
           Orcamento {
             __typename
             id
-            arquivo {
-              __typename
-              bucket
-              key
-              region
-            }
+            arquivo
             titulo
             escala
-            verniz
             Tecnologia {
               __typename
               id
@@ -2529,18 +2962,22 @@ export class APIService {
               createdAt
               updatedAt
             }
-            situacao
             Proposta {
               __typename
               nextToken
             }
+            situacao
+            observacao
+            usuario
             createdAt
             updatedAt
             owner
           }
+          idOrcamento
           prazo
           valor
           frete
+          responsavelProposta
           createdAt
           updatedAt
           owner
@@ -2568,15 +3005,9 @@ export class APIService {
           Orcamento {
             __typename
             id
-            arquivo {
-              __typename
-              bucket
-              key
-              region
-            }
+            arquivo
             titulo
             escala
-            verniz
             Tecnologia {
               __typename
               id
@@ -2605,18 +3036,22 @@ export class APIService {
               createdAt
               updatedAt
             }
-            situacao
             Proposta {
               __typename
               nextToken
             }
+            situacao
+            observacao
+            usuario
             createdAt
             updatedAt
             owner
           }
+          idOrcamento
           prazo
           valor
           frete
+          responsavelProposta
           createdAt
           updatedAt
           owner
@@ -2978,6 +3413,98 @@ export class APIService {
     )) as any;
     return <ListEnderecosQuery>response.data.listEnderecos;
   }
+  async GetChats(id: string): Promise<GetChatsQuery> {
+    const statement = `query GetChats($id: ID!) {
+        getChats(id: $id) {
+          __typename
+          id
+          usuarioEnvio
+          Proposta {
+            __typename
+            id
+            Orcamento {
+              __typename
+              id
+              arquivo
+              titulo
+              escala
+              situacao
+              observacao
+              usuario
+              createdAt
+              updatedAt
+              owner
+            }
+            idOrcamento
+            prazo
+            valor
+            frete
+            responsavelProposta
+            createdAt
+            updatedAt
+            owner
+          }
+          idProposta
+          msg
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetChatsQuery>response.data.getChats;
+  }
+  async ListChats(
+    filter?: ModelChatsFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListChatsQuery> {
+    const statement = `query ListChats($filter: ModelChatsFilterInput, $limit: Int, $nextToken: String) {
+        listChats(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            usuarioEnvio
+            Proposta {
+              __typename
+              id
+              idOrcamento
+              prazo
+              valor
+              frete
+              responsavelProposta
+              createdAt
+              updatedAt
+              owner
+            }
+            idProposta
+            msg
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListChatsQuery>response.data.listChats;
+  }
   async GetUsuarios(id: string): Promise<GetUsuariosQuery> {
     const statement = `query GetUsuarios($id: ID!) {
         getUsuarios(id: $id) {
@@ -3060,15 +3587,9 @@ export class APIService {
         getOrcamentos(id: $id) {
           __typename
           id
-          arquivo {
-            __typename
-            bucket
-            key
-            region
-          }
+          arquivo
           titulo
           escala
-          verniz
           Tecnologia {
             __typename
             id
@@ -3097,21 +3618,25 @@ export class APIService {
             createdAt
             updatedAt
           }
-          situacao
           Proposta {
             __typename
             items {
               __typename
               id
+              idOrcamento
               prazo
               valor
               frete
+              responsavelProposta
               createdAt
               updatedAt
               owner
             }
             nextToken
           }
+          situacao
+          observacao
+          usuario
           createdAt
           updatedAt
           owner
@@ -3136,15 +3661,9 @@ export class APIService {
           items {
             __typename
             id
-            arquivo {
-              __typename
-              bucket
-              key
-              region
-            }
+            arquivo
             titulo
             escala
-            verniz
             Tecnologia {
               __typename
               id
@@ -3173,11 +3692,13 @@ export class APIService {
               createdAt
               updatedAt
             }
-            situacao
             Proposta {
               __typename
               nextToken
             }
+            situacao
+            observacao
+            usuario
             createdAt
             updatedAt
             owner
@@ -3208,15 +3729,9 @@ export class APIService {
           Orcamento {
             __typename
             id
-            arquivo {
-              __typename
-              bucket
-              key
-              region
-            }
+            arquivo
             titulo
             escala
-            verniz
             Tecnologia {
               __typename
               id
@@ -3245,18 +3760,22 @@ export class APIService {
               createdAt
               updatedAt
             }
-            situacao
             Proposta {
               __typename
               nextToken
             }
+            situacao
+            observacao
+            usuario
             createdAt
             updatedAt
             owner
           }
+          idOrcamento
           prazo
           valor
           frete
+          responsavelProposta
           createdAt
           updatedAt
           owner
@@ -3284,17 +3803,21 @@ export class APIService {
             Orcamento {
               __typename
               id
+              arquivo
               titulo
               escala
-              verniz
               situacao
+              observacao
+              usuario
               createdAt
               updatedAt
               owner
             }
+            idOrcamento
             prazo
             valor
             frete
+            responsavelProposta
             createdAt
             updatedAt
             owner
@@ -3593,6 +4116,135 @@ export class APIService {
     ) as Observable<SubscriptionResponse<OnDeleteEnderecosSubscription>>;
   }
 
+  OnCreateChatsListener: Observable<
+    SubscriptionResponse<OnCreateChatsSubscription>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateChats {
+        onCreateChats {
+          __typename
+          id
+          usuarioEnvio
+          Proposta {
+            __typename
+            id
+            Orcamento {
+              __typename
+              id
+              arquivo
+              titulo
+              escala
+              situacao
+              observacao
+              usuario
+              createdAt
+              updatedAt
+              owner
+            }
+            idOrcamento
+            prazo
+            valor
+            frete
+            responsavelProposta
+            createdAt
+            updatedAt
+            owner
+          }
+          idProposta
+          msg
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<SubscriptionResponse<OnCreateChatsSubscription>>;
+
+  OnUpdateChatsListener: Observable<
+    SubscriptionResponse<OnUpdateChatsSubscription>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateChats {
+        onUpdateChats {
+          __typename
+          id
+          usuarioEnvio
+          Proposta {
+            __typename
+            id
+            Orcamento {
+              __typename
+              id
+              arquivo
+              titulo
+              escala
+              situacao
+              observacao
+              usuario
+              createdAt
+              updatedAt
+              owner
+            }
+            idOrcamento
+            prazo
+            valor
+            frete
+            responsavelProposta
+            createdAt
+            updatedAt
+            owner
+          }
+          idProposta
+          msg
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<SubscriptionResponse<OnUpdateChatsSubscription>>;
+
+  OnDeleteChatsListener: Observable<
+    SubscriptionResponse<OnDeleteChatsSubscription>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteChats {
+        onDeleteChats {
+          __typename
+          id
+          usuarioEnvio
+          Proposta {
+            __typename
+            id
+            Orcamento {
+              __typename
+              id
+              arquivo
+              titulo
+              escala
+              situacao
+              observacao
+              usuario
+              createdAt
+              updatedAt
+              owner
+            }
+            idOrcamento
+            prazo
+            valor
+            frete
+            responsavelProposta
+            createdAt
+            updatedAt
+            owner
+          }
+          idProposta
+          msg
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<SubscriptionResponse<OnDeleteChatsSubscription>>;
+
   OnCreateUsuariosListener(
     owner?: string
   ): Observable<SubscriptionResponse<OnCreateUsuariosSubscription>> {
@@ -3695,22 +4347,17 @@ export class APIService {
     ) as Observable<SubscriptionResponse<OnDeleteUsuariosSubscription>>;
   }
 
-  OnCreateOrcamentosListener(
-    owner?: string
-  ): Observable<SubscriptionResponse<OnCreateOrcamentosSubscription>> {
-    const statement = `subscription OnCreateOrcamentos($owner: String) {
-        onCreateOrcamentos(owner: $owner) {
+  OnCreateOrcamentosListener: Observable<
+    SubscriptionResponse<OnCreateOrcamentosSubscription>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateOrcamentos {
+        onCreateOrcamentos {
           __typename
           id
-          arquivo {
-            __typename
-            bucket
-            key
-            region
-          }
+          arquivo
           titulo
           escala
-          verniz
           Tecnologia {
             __typename
             id
@@ -3739,51 +4386,44 @@ export class APIService {
             createdAt
             updatedAt
           }
-          situacao
           Proposta {
             __typename
             items {
               __typename
               id
+              idOrcamento
               prazo
               valor
               frete
+              responsavelProposta
               createdAt
               updatedAt
               owner
             }
             nextToken
           }
+          situacao
+          observacao
+          usuario
           createdAt
           updatedAt
           owner
         }
-      }`;
-    const gqlAPIServiceArguments: any = {};
-    if (owner) {
-      gqlAPIServiceArguments.owner = owner;
-    }
-    return API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    ) as Observable<SubscriptionResponse<OnCreateOrcamentosSubscription>>;
-  }
+      }`
+    )
+  ) as Observable<SubscriptionResponse<OnCreateOrcamentosSubscription>>;
 
-  OnUpdateOrcamentosListener(
-    owner?: string
-  ): Observable<SubscriptionResponse<OnUpdateOrcamentosSubscription>> {
-    const statement = `subscription OnUpdateOrcamentos($owner: String) {
-        onUpdateOrcamentos(owner: $owner) {
+  OnUpdateOrcamentosListener: Observable<
+    SubscriptionResponse<OnUpdateOrcamentosSubscription>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateOrcamentos {
+        onUpdateOrcamentos {
           __typename
           id
-          arquivo {
-            __typename
-            bucket
-            key
-            region
-          }
+          arquivo
           titulo
           escala
-          verniz
           Tecnologia {
             __typename
             id
@@ -3812,51 +4452,44 @@ export class APIService {
             createdAt
             updatedAt
           }
-          situacao
           Proposta {
             __typename
             items {
               __typename
               id
+              idOrcamento
               prazo
               valor
               frete
+              responsavelProposta
               createdAt
               updatedAt
               owner
             }
             nextToken
           }
+          situacao
+          observacao
+          usuario
           createdAt
           updatedAt
           owner
         }
-      }`;
-    const gqlAPIServiceArguments: any = {};
-    if (owner) {
-      gqlAPIServiceArguments.owner = owner;
-    }
-    return API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    ) as Observable<SubscriptionResponse<OnUpdateOrcamentosSubscription>>;
-  }
+      }`
+    )
+  ) as Observable<SubscriptionResponse<OnUpdateOrcamentosSubscription>>;
 
-  OnDeleteOrcamentosListener(
-    owner?: string
-  ): Observable<SubscriptionResponse<OnDeleteOrcamentosSubscription>> {
-    const statement = `subscription OnDeleteOrcamentos($owner: String) {
-        onDeleteOrcamentos(owner: $owner) {
+  OnDeleteOrcamentosListener: Observable<
+    SubscriptionResponse<OnDeleteOrcamentosSubscription>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteOrcamentos {
+        onDeleteOrcamentos {
           __typename
           id
-          arquivo {
-            __typename
-            bucket
-            key
-            region
-          }
+          arquivo
           titulo
           escala
-          verniz
           Tecnologia {
             __typename
             id
@@ -3885,54 +4518,47 @@ export class APIService {
             createdAt
             updatedAt
           }
-          situacao
           Proposta {
             __typename
             items {
               __typename
               id
+              idOrcamento
               prazo
               valor
               frete
+              responsavelProposta
               createdAt
               updatedAt
               owner
             }
             nextToken
           }
+          situacao
+          observacao
+          usuario
           createdAt
           updatedAt
           owner
         }
-      }`;
-    const gqlAPIServiceArguments: any = {};
-    if (owner) {
-      gqlAPIServiceArguments.owner = owner;
-    }
-    return API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    ) as Observable<SubscriptionResponse<OnDeleteOrcamentosSubscription>>;
-  }
+      }`
+    )
+  ) as Observable<SubscriptionResponse<OnDeleteOrcamentosSubscription>>;
 
-  OnCreatePropostasListener(
-    owner?: string
-  ): Observable<SubscriptionResponse<OnCreatePropostasSubscription>> {
-    const statement = `subscription OnCreatePropostas($owner: String) {
-        onCreatePropostas(owner: $owner) {
+  OnCreatePropostasListener: Observable<
+    SubscriptionResponse<OnCreatePropostasSubscription>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreatePropostas {
+        onCreatePropostas {
           __typename
           id
           Orcamento {
             __typename
             id
-            arquivo {
-              __typename
-              bucket
-              key
-              region
-            }
+            arquivo
             titulo
             escala
-            verniz
             Tecnologia {
               __typename
               id
@@ -3961,51 +4587,44 @@ export class APIService {
               createdAt
               updatedAt
             }
-            situacao
             Proposta {
               __typename
               nextToken
             }
+            situacao
+            observacao
+            usuario
             createdAt
             updatedAt
             owner
           }
+          idOrcamento
           prazo
           valor
           frete
+          responsavelProposta
           createdAt
           updatedAt
           owner
         }
-      }`;
-    const gqlAPIServiceArguments: any = {};
-    if (owner) {
-      gqlAPIServiceArguments.owner = owner;
-    }
-    return API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    ) as Observable<SubscriptionResponse<OnCreatePropostasSubscription>>;
-  }
+      }`
+    )
+  ) as Observable<SubscriptionResponse<OnCreatePropostasSubscription>>;
 
-  OnUpdatePropostasListener(
-    owner?: string
-  ): Observable<SubscriptionResponse<OnUpdatePropostasSubscription>> {
-    const statement = `subscription OnUpdatePropostas($owner: String) {
-        onUpdatePropostas(owner: $owner) {
+  OnUpdatePropostasListener: Observable<
+    SubscriptionResponse<OnUpdatePropostasSubscription>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdatePropostas {
+        onUpdatePropostas {
           __typename
           id
           Orcamento {
             __typename
             id
-            arquivo {
-              __typename
-              bucket
-              key
-              region
-            }
+            arquivo
             titulo
             escala
-            verniz
             Tecnologia {
               __typename
               id
@@ -4034,51 +4653,44 @@ export class APIService {
               createdAt
               updatedAt
             }
-            situacao
             Proposta {
               __typename
               nextToken
             }
+            situacao
+            observacao
+            usuario
             createdAt
             updatedAt
             owner
           }
+          idOrcamento
           prazo
           valor
           frete
+          responsavelProposta
           createdAt
           updatedAt
           owner
         }
-      }`;
-    const gqlAPIServiceArguments: any = {};
-    if (owner) {
-      gqlAPIServiceArguments.owner = owner;
-    }
-    return API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    ) as Observable<SubscriptionResponse<OnUpdatePropostasSubscription>>;
-  }
+      }`
+    )
+  ) as Observable<SubscriptionResponse<OnUpdatePropostasSubscription>>;
 
-  OnDeletePropostasListener(
-    owner?: string
-  ): Observable<SubscriptionResponse<OnDeletePropostasSubscription>> {
-    const statement = `subscription OnDeletePropostas($owner: String) {
-        onDeletePropostas(owner: $owner) {
+  OnDeletePropostasListener: Observable<
+    SubscriptionResponse<OnDeletePropostasSubscription>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeletePropostas {
+        onDeletePropostas {
           __typename
           id
           Orcamento {
             __typename
             id
-            arquivo {
-              __typename
-              bucket
-              key
-              region
-            }
+            arquivo
             titulo
             escala
-            verniz
             Tecnologia {
               __typename
               id
@@ -4107,31 +4719,29 @@ export class APIService {
               createdAt
               updatedAt
             }
-            situacao
             Proposta {
               __typename
               nextToken
             }
+            situacao
+            observacao
+            usuario
             createdAt
             updatedAt
             owner
           }
+          idOrcamento
           prazo
           valor
           frete
+          responsavelProposta
           createdAt
           updatedAt
           owner
         }
-      }`;
-    const gqlAPIServiceArguments: any = {};
-    if (owner) {
-      gqlAPIServiceArguments.owner = owner;
-    }
-    return API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    ) as Observable<SubscriptionResponse<OnDeletePropostasSubscription>>;
-  }
+      }`
+    )
+  ) as Observable<SubscriptionResponse<OnDeletePropostasSubscription>>;
 
   OnCreateCoresListener: Observable<
     SubscriptionResponse<OnCreateCoresSubscription>

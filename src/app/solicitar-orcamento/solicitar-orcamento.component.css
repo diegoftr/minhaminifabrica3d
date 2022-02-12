@@ -1,0 +1,41 @@
+input[type="file"] {
+    display: none;
+}
+
+.label {
+    padding: 20px 10px;
+    width: 200px;
+    background-color: black;
+    color: #FFF;
+    text-align: center;
+    display: block;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 0px;
+    border: 0px;
+    text-overflow: ellipsis;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+/* display: block;
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    outline: none;
+    width: 211px;
+    height: 56px;
+    min-height: 33px;
+    min-width: 40px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(3, 3, 3);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 13px;
+    padding: 0px;
+    border-radius: 0px;
+    border: 0px; */
