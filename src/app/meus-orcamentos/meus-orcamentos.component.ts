@@ -23,16 +23,16 @@ export class MeusOrcamentosComponent implements OnInit {
 
   }
 
-  isParceiro() {
-    return this.authenticator.user == null ? false : this.authenticator.user.getSignInUserSession()?.getAccessToken().payload["cognito:groups"] == 'parceiro';
-  }
-
   isAdmin() {
     return this.authenticator.user == null ? false : this.authenticator.user.getSignInUserSession()?.getAccessToken().payload["cognito:groups"] == 'admin';
   }
 
   isUsuario() {
-    return this.authenticator.user == null ? false : this.authenticator.user.getSignInUserSession()?.getAccessToken().payload["cognito:groups"] == undefined;
+    return !this.isAdmin() && !this.isParceiro();
+  }
+
+  isParceiro() {
+    return this.authenticator.user == null ? false : this.authenticator.user.getSignInUserSession()?.getAccessToken().payload["cognito:groups"] == 'parceiro';
   }
 
   carregarOrcamento(id: string) {
