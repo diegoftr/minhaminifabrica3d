@@ -21,7 +21,7 @@
                 <td class="colunaTabela" style="background-color: #35cbfb;">
                     <b>Data Criação</b>
                 </td>
-                <td class="colunaTabela" style="background-color: red;">
+                <td class="colunaTabela" style="background-color: red;" *ngIf="!isParceiro()">
                 </td>
             </tr>
             <tr class="linhaTabela" *ngFor="let orcamento of orcamentos; let i = index">
@@ -40,7 +40,7 @@
                 <td class="colunaTabela">
                     {{formatarData(orcamento.createdAt)}}
                 </td>
-                <td class="colunaTabela">
+                <td class="colunaTabela" *ngIf="!isParceiro()">
                     <a (click)="removerOrcamento(orcamento.id)" style="color: red; cursor:pointer;">X</a>
                 </td>
             </tr>

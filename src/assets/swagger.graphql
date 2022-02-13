@@ -1,0 +1,685 @@
+type Acabamentos {
+	id: ID!
+	descricao: String!
+	createdAt: AWSDateTime!
+	updatedAt: AWSDateTime!
+}
+
+type Chats {
+	id: ID!
+	usuarioEnvio: String!
+	Proposta: Propostas
+	idProposta: String!
+	msg: String!
+	createdAt: AWSDateTime!
+	updatedAt: AWSDateTime!
+}
+
+type Cores {
+	id: ID!
+	descricao: String!
+	createdAt: AWSDateTime!
+	updatedAt: AWSDateTime!
+}
+
+input CreateAcabamentosInput {
+	id: ID
+	descricao: String!
+}
+
+input CreateChatsInput {
+	id: ID
+	usuarioEnvio: String!
+	idProposta: String!
+	msg: String!
+	chatsPropostaId: ID
+}
+
+input CreateCoresInput {
+	id: ID
+	descricao: String!
+}
+
+input CreateEnderecosInput {
+	id: ID
+	numCEP: Int!
+	numero: Int!
+	complemento: String!
+}
+
+input CreateMateriaisInput {
+	id: ID
+	descricao: String!
+}
+
+input CreateOrcamentosInput {
+	id: ID
+	arquivo: String!
+	titulo: String!
+	escala: Int!
+	situacao: SituacaoOrcamento!
+	observacao: String
+	usuario: String!
+	orcamentosTecnologiaId: ID!
+	orcamentosMaterialId: ID!
+	orcamentosAcabamentoId: ID!
+	orcamentosCorId: ID!
+}
+
+input CreatePropostasInput {
+	id: ID
+	idOrcamento: String!
+	prazo: String!
+	valor: String!
+	frete: String!
+	responsavelProposta: String!
+	orcamentosPropostaId: ID
+	propostasOrcamentoId: ID
+}
+
+input CreateTecnologiasInput {
+	id: ID
+	descricao: String!
+}
+
+input CreateUsuariosInput {
+	id: ID
+	cpf: String!
+	nome: String!
+	email: String!
+	usuariosEnderecoId: ID
+}
+
+input DeleteAcabamentosInput {
+	id: ID!
+}
+
+input DeleteChatsInput {
+	id: ID!
+}
+
+input DeleteCoresInput {
+	id: ID!
+}
+
+input DeleteEnderecosInput {
+	id: ID!
+}
+
+input DeleteMateriaisInput {
+	id: ID!
+}
+
+input DeleteOrcamentosInput {
+	id: ID!
+}
+
+input DeletePropostasInput {
+	id: ID!
+}
+
+input DeleteTecnologiasInput {
+	id: ID!
+}
+
+input DeleteUsuariosInput {
+	id: ID!
+}
+
+type Enderecos {
+	id: ID!
+	numCEP: Int!
+	numero: Int!
+	complemento: String!
+	createdAt: AWSDateTime!
+	updatedAt: AWSDateTime!
+	owner: String
+}
+
+type Materiais {
+	id: ID!
+	descricao: String!
+	createdAt: AWSDateTime!
+	updatedAt: AWSDateTime!
+}
+
+input ModelAcabamentosConditionInput {
+	descricao: ModelStringInput
+	and: [ModelAcabamentosConditionInput]
+	or: [ModelAcabamentosConditionInput]
+	not: ModelAcabamentosConditionInput
+}
+
+type ModelAcabamentosConnection {
+	items: [Acabamentos]
+	nextToken: String
+}
+
+input ModelAcabamentosFilterInput {
+	id: ModelIDInput
+	descricao: ModelStringInput
+	and: [ModelAcabamentosFilterInput]
+	or: [ModelAcabamentosFilterInput]
+	not: ModelAcabamentosFilterInput
+}
+
+enum ModelAttributeTypes {
+	binary
+	binarySet
+	bool
+	list
+	map
+	number
+	numberSet
+	string
+	stringSet
+	_null
+}
+
+input ModelBooleanInput {
+	ne: Boolean
+	eq: Boolean
+	attributeExists: Boolean
+	attributeType: ModelAttributeTypes
+}
+
+input ModelChatsConditionInput {
+	usuarioEnvio: ModelStringInput
+	idProposta: ModelStringInput
+	msg: ModelStringInput
+	and: [ModelChatsConditionInput]
+	or: [ModelChatsConditionInput]
+	not: ModelChatsConditionInput
+}
+
+type ModelChatsConnection {
+	items: [Chats]
+	nextToken: String
+}
+
+input ModelChatsFilterInput {
+	id: ModelIDInput
+	usuarioEnvio: ModelStringInput
+	idProposta: ModelStringInput
+	msg: ModelStringInput
+	and: [ModelChatsFilterInput]
+	or: [ModelChatsFilterInput]
+	not: ModelChatsFilterInput
+}
+
+input ModelCoresConditionInput {
+	descricao: ModelStringInput
+	and: [ModelCoresConditionInput]
+	or: [ModelCoresConditionInput]
+	not: ModelCoresConditionInput
+}
+
+type ModelCoresConnection {
+	items: [Cores]
+	nextToken: String
+}
+
+input ModelCoresFilterInput {
+	id: ModelIDInput
+	descricao: ModelStringInput
+	and: [ModelCoresFilterInput]
+	or: [ModelCoresFilterInput]
+	not: ModelCoresFilterInput
+}
+
+input ModelEnderecosConditionInput {
+	numCEP: ModelIntInput
+	numero: ModelIntInput
+	complemento: ModelStringInput
+	and: [ModelEnderecosConditionInput]
+	or: [ModelEnderecosConditionInput]
+	not: ModelEnderecosConditionInput
+}
+
+type ModelEnderecosConnection {
+	items: [Enderecos]
+	nextToken: String
+}
+
+input ModelEnderecosFilterInput {
+	id: ModelIDInput
+	numCEP: ModelIntInput
+	numero: ModelIntInput
+	complemento: ModelStringInput
+	and: [ModelEnderecosFilterInput]
+	or: [ModelEnderecosFilterInput]
+	not: ModelEnderecosFilterInput
+}
+
+input ModelFloatInput {
+	ne: Float
+	eq: Float
+	le: Float
+	lt: Float
+	ge: Float
+	gt: Float
+	between: [Float]
+	attributeExists: Boolean
+	attributeType: ModelAttributeTypes
+}
+
+input ModelIDInput {
+	ne: ID
+	eq: ID
+	le: ID
+	lt: ID
+	ge: ID
+	gt: ID
+	contains: ID
+	notContains: ID
+	between: [ID]
+	beginsWith: ID
+	attributeExists: Boolean
+	attributeType: ModelAttributeTypes
+	size: ModelSizeInput
+}
+
+input ModelIntInput {
+	ne: Int
+	eq: Int
+	le: Int
+	lt: Int
+	ge: Int
+	gt: Int
+	between: [Int]
+	attributeExists: Boolean
+	attributeType: ModelAttributeTypes
+}
+
+input ModelMateriaisConditionInput {
+	descricao: ModelStringInput
+	and: [ModelMateriaisConditionInput]
+	or: [ModelMateriaisConditionInput]
+	not: ModelMateriaisConditionInput
+}
+
+type ModelMateriaisConnection {
+	items: [Materiais]
+	nextToken: String
+}
+
+input ModelMateriaisFilterInput {
+	id: ModelIDInput
+	descricao: ModelStringInput
+	and: [ModelMateriaisFilterInput]
+	or: [ModelMateriaisFilterInput]
+	not: ModelMateriaisFilterInput
+}
+
+input ModelOrcamentosConditionInput {
+	arquivo: ModelStringInput
+	titulo: ModelStringInput
+	escala: ModelIntInput
+	situacao: ModelSituacaoOrcamentoInput
+	observacao: ModelStringInput
+	usuario: ModelStringInput
+	and: [ModelOrcamentosConditionInput]
+	or: [ModelOrcamentosConditionInput]
+	not: ModelOrcamentosConditionInput
+}
+
+type ModelOrcamentosConnection {
+	items: [Orcamentos]
+	nextToken: String
+}
+
+input ModelOrcamentosFilterInput {
+	id: ModelIDInput
+	arquivo: ModelStringInput
+	titulo: ModelStringInput
+	escala: ModelIntInput
+	situacao: ModelSituacaoOrcamentoInput
+	observacao: ModelStringInput
+	usuario: ModelStringInput
+	and: [ModelOrcamentosFilterInput]
+	or: [ModelOrcamentosFilterInput]
+	not: ModelOrcamentosFilterInput
+}
+
+input ModelPropostasConditionInput {
+	idOrcamento: ModelStringInput
+	prazo: ModelStringInput
+	valor: ModelStringInput
+	frete: ModelStringInput
+	responsavelProposta: ModelStringInput
+	and: [ModelPropostasConditionInput]
+	or: [ModelPropostasConditionInput]
+	not: ModelPropostasConditionInput
+}
+
+type ModelPropostasConnection {
+	items: [Propostas]
+	nextToken: String
+}
+
+input ModelPropostasFilterInput {
+	id: ModelIDInput
+	idOrcamento: ModelStringInput
+	prazo: ModelStringInput
+	valor: ModelStringInput
+	frete: ModelStringInput
+	responsavelProposta: ModelStringInput
+	and: [ModelPropostasFilterInput]
+	or: [ModelPropostasFilterInput]
+	not: ModelPropostasFilterInput
+}
+
+input ModelSituacaoOrcamentoInput {
+	eq: SituacaoOrcamento
+	ne: SituacaoOrcamento
+}
+
+input ModelSizeInput {
+	ne: Int
+	eq: Int
+	le: Int
+	lt: Int
+	ge: Int
+	gt: Int
+	between: [Int]
+}
+
+enum ModelSortDirection {
+	ASC
+	DESC
+}
+
+input ModelStringInput {
+	ne: String
+	eq: String
+	le: String
+	lt: String
+	ge: String
+	gt: String
+	contains: String
+	notContains: String
+	between: [String]
+	beginsWith: String
+	attributeExists: Boolean
+	attributeType: ModelAttributeTypes
+	size: ModelSizeInput
+}
+
+input ModelTecnologiasConditionInput {
+	descricao: ModelStringInput
+	and: [ModelTecnologiasConditionInput]
+	or: [ModelTecnologiasConditionInput]
+	not: ModelTecnologiasConditionInput
+}
+
+type ModelTecnologiasConnection {
+	items: [Tecnologias]
+	nextToken: String
+}
+
+input ModelTecnologiasFilterInput {
+	id: ModelIDInput
+	descricao: ModelStringInput
+	and: [ModelTecnologiasFilterInput]
+	or: [ModelTecnologiasFilterInput]
+	not: ModelTecnologiasFilterInput
+}
+
+input ModelUsuariosConditionInput {
+	cpf: ModelStringInput
+	nome: ModelStringInput
+	email: ModelStringInput
+	and: [ModelUsuariosConditionInput]
+	or: [ModelUsuariosConditionInput]
+	not: ModelUsuariosConditionInput
+}
+
+type ModelUsuariosConnection {
+	items: [Usuarios]
+	nextToken: String
+}
+
+input ModelUsuariosFilterInput {
+	id: ModelIDInput
+	cpf: ModelStringInput
+	nome: ModelStringInput
+	email: ModelStringInput
+	and: [ModelUsuariosFilterInput]
+	or: [ModelUsuariosFilterInput]
+	not: ModelUsuariosFilterInput
+}
+
+type Mutation {
+	createEnderecos(input: CreateEnderecosInput!, condition: ModelEnderecosConditionInput): Enderecos
+	updateEnderecos(input: UpdateEnderecosInput!, condition: ModelEnderecosConditionInput): Enderecos
+	deleteEnderecos(input: DeleteEnderecosInput!, condition: ModelEnderecosConditionInput): Enderecos
+	createChats(input: CreateChatsInput!, condition: ModelChatsConditionInput): Chats
+	updateChats(input: UpdateChatsInput!, condition: ModelChatsConditionInput): Chats
+	deleteChats(input: DeleteChatsInput!, condition: ModelChatsConditionInput): Chats
+	createUsuarios(input: CreateUsuariosInput!, condition: ModelUsuariosConditionInput): Usuarios
+	updateUsuarios(input: UpdateUsuariosInput!, condition: ModelUsuariosConditionInput): Usuarios
+	deleteUsuarios(input: DeleteUsuariosInput!, condition: ModelUsuariosConditionInput): Usuarios
+	createOrcamentos(input: CreateOrcamentosInput!, condition: ModelOrcamentosConditionInput): Orcamentos
+	updateOrcamentos(input: UpdateOrcamentosInput!, condition: ModelOrcamentosConditionInput): Orcamentos
+	deleteOrcamentos(input: DeleteOrcamentosInput!, condition: ModelOrcamentosConditionInput): Orcamentos
+	createPropostas(input: CreatePropostasInput!, condition: ModelPropostasConditionInput): Propostas
+	updatePropostas(input: UpdatePropostasInput!, condition: ModelPropostasConditionInput): Propostas
+	deletePropostas(input: DeletePropostasInput!, condition: ModelPropostasConditionInput): Propostas
+	createCores(input: CreateCoresInput!, condition: ModelCoresConditionInput): Cores
+	updateCores(input: UpdateCoresInput!, condition: ModelCoresConditionInput): Cores
+	deleteCores(input: DeleteCoresInput!, condition: ModelCoresConditionInput): Cores
+	createAcabamentos(input: CreateAcabamentosInput!, condition: ModelAcabamentosConditionInput): Acabamentos
+	updateAcabamentos(input: UpdateAcabamentosInput!, condition: ModelAcabamentosConditionInput): Acabamentos
+	deleteAcabamentos(input: DeleteAcabamentosInput!, condition: ModelAcabamentosConditionInput): Acabamentos
+	createMateriais(input: CreateMateriaisInput!, condition: ModelMateriaisConditionInput): Materiais
+	updateMateriais(input: UpdateMateriaisInput!, condition: ModelMateriaisConditionInput): Materiais
+	deleteMateriais(input: DeleteMateriaisInput!, condition: ModelMateriaisConditionInput): Materiais
+	createTecnologias(input: CreateTecnologiasInput!, condition: ModelTecnologiasConditionInput): Tecnologias
+	updateTecnologias(input: UpdateTecnologiasInput!, condition: ModelTecnologiasConditionInput): Tecnologias
+	deleteTecnologias(input: DeleteTecnologiasInput!, condition: ModelTecnologiasConditionInput): Tecnologias
+}
+
+type Orcamentos {
+	id: ID!
+	arquivo: String!
+	titulo: String!
+	escala: Int!
+	Tecnologia: Tecnologias!
+	Material: Materiais!
+	Acabamento: Acabamentos!
+	Cor: Cores!
+	Proposta(
+		filter: ModelPropostasFilterInput,
+		sortDirection: ModelSortDirection,
+		limit: Int,
+		nextToken: String
+	): ModelPropostasConnection
+	situacao: SituacaoOrcamento!
+	observacao: String
+	usuario: String!
+	createdAt: AWSDateTime!
+	updatedAt: AWSDateTime!
+	owner: String
+}
+
+type Propostas {
+	id: ID!
+	Orcamento: Orcamentos
+	idOrcamento: String!
+	prazo: String!
+	valor: String!
+	frete: String!
+	responsavelProposta: String!
+	createdAt: AWSDateTime!
+	updatedAt: AWSDateTime!
+	owner: String
+}
+
+type Query {
+	getEnderecos(id: ID!): Enderecos
+	listEnderecos(filter: ModelEnderecosFilterInput, limit: Int, nextToken: String): ModelEnderecosConnection
+	getChats(id: ID!): Chats
+	listChats(filter: ModelChatsFilterInput, limit: Int, nextToken: String): ModelChatsConnection
+	getUsuarios(id: ID!): Usuarios
+	listUsuarios(filter: ModelUsuariosFilterInput, limit: Int, nextToken: String): ModelUsuariosConnection
+	getOrcamentos(id: ID!): Orcamentos
+	listOrcamentos(filter: ModelOrcamentosFilterInput, limit: Int, nextToken: String): ModelOrcamentosConnection
+	getPropostas(id: ID!): Propostas
+	listPropostas(filter: ModelPropostasFilterInput, limit: Int, nextToken: String): ModelPropostasConnection
+	getCores(id: ID!): Cores
+	listCores(filter: ModelCoresFilterInput, limit: Int, nextToken: String): ModelCoresConnection
+	getAcabamentos(id: ID!): Acabamentos
+	listAcabamentos(filter: ModelAcabamentosFilterInput, limit: Int, nextToken: String): ModelAcabamentosConnection
+	getMateriais(id: ID!): Materiais
+	listMateriais(filter: ModelMateriaisFilterInput, limit: Int, nextToken: String): ModelMateriaisConnection
+	getTecnologias(id: ID!): Tecnologias
+	listTecnologias(filter: ModelTecnologiasFilterInput, limit: Int, nextToken: String): ModelTecnologiasConnection
+}
+
+enum SituacaoOrcamento {
+	ATIVO
+	ENCERADO
+}
+
+type Subscription {
+	onCreateEnderecos(owner: String): Enderecos
+		@aws_subscribe(mutations: ["createEnderecos"])
+	onUpdateEnderecos(owner: String): Enderecos
+		@aws_subscribe(mutations: ["updateEnderecos"])
+	onDeleteEnderecos(owner: String): Enderecos
+		@aws_subscribe(mutations: ["deleteEnderecos"])
+	onCreateChats: Chats
+		@aws_subscribe(mutations: ["createChats"])
+	onUpdateChats: Chats
+		@aws_subscribe(mutations: ["updateChats"])
+	onDeleteChats: Chats
+		@aws_subscribe(mutations: ["deleteChats"])
+	onCreateUsuarios(owner: String): Usuarios
+		@aws_subscribe(mutations: ["createUsuarios"])
+	onUpdateUsuarios(owner: String): Usuarios
+		@aws_subscribe(mutations: ["updateUsuarios"])
+	onDeleteUsuarios(owner: String): Usuarios
+		@aws_subscribe(mutations: ["deleteUsuarios"])
+	onCreateOrcamentos: Orcamentos
+		@aws_subscribe(mutations: ["createOrcamentos"])
+	onUpdateOrcamentos: Orcamentos
+		@aws_subscribe(mutations: ["updateOrcamentos"])
+	onDeleteOrcamentos: Orcamentos
+		@aws_subscribe(mutations: ["deleteOrcamentos"])
+	onCreatePropostas: Propostas
+		@aws_subscribe(mutations: ["createPropostas"])
+	onUpdatePropostas: Propostas
+		@aws_subscribe(mutations: ["updatePropostas"])
+	onDeletePropostas: Propostas
+		@aws_subscribe(mutations: ["deletePropostas"])
+	onCreateCores: Cores
+		@aws_subscribe(mutations: ["createCores"])
+	onUpdateCores: Cores
+		@aws_subscribe(mutations: ["updateCores"])
+	onDeleteCores: Cores
+		@aws_subscribe(mutations: ["deleteCores"])
+	onCreateAcabamentos: Acabamentos
+		@aws_subscribe(mutations: ["createAcabamentos"])
+	onUpdateAcabamentos: Acabamentos
+		@aws_subscribe(mutations: ["updateAcabamentos"])
+	onDeleteAcabamentos: Acabamentos
+		@aws_subscribe(mutations: ["deleteAcabamentos"])
+	onCreateMateriais: Materiais
+		@aws_subscribe(mutations: ["createMateriais"])
+	onUpdateMateriais: Materiais
+		@aws_subscribe(mutations: ["updateMateriais"])
+	onDeleteMateriais: Materiais
+		@aws_subscribe(mutations: ["deleteMateriais"])
+	onCreateTecnologias: Tecnologias
+		@aws_subscribe(mutations: ["createTecnologias"])
+	onUpdateTecnologias: Tecnologias
+		@aws_subscribe(mutations: ["updateTecnologias"])
+	onDeleteTecnologias: Tecnologias
+		@aws_subscribe(mutations: ["deleteTecnologias"])
+}
+
+type Tecnologias {
+	id: ID!
+	descricao: String!
+	createdAt: AWSDateTime!
+	updatedAt: AWSDateTime!
+}
+
+input UpdateAcabamentosInput {
+	id: ID!
+	descricao: String
+}
+
+input UpdateChatsInput {
+	id: ID!
+	usuarioEnvio: String
+	idProposta: String
+	msg: String
+	chatsPropostaId: ID
+}
+
+input UpdateCoresInput {
+	id: ID!
+	descricao: String
+}
+
+input UpdateEnderecosInput {
+	id: ID!
+	numCEP: Int
+	numero: Int
+	complemento: String
+}
+
+input UpdateMateriaisInput {
+	id: ID!
+	descricao: String
+}
+
+input UpdateOrcamentosInput {
+	id: ID!
+	arquivo: String
+	titulo: String
+	escala: Int
+	situacao: SituacaoOrcamento
+	observacao: String
+	usuario: String
+	orcamentosTecnologiaId: ID
+	orcamentosMaterialId: ID
+	orcamentosAcabamentoId: ID
+	orcamentosCorId: ID
+}
+
+input UpdatePropostasInput {
+	id: ID!
+	idOrcamento: String
+	prazo: String
+	valor: String
+	frete: String
+	responsavelProposta: String
+	orcamentosPropostaId: ID
+	propostasOrcamentoId: ID
+}
+
+input UpdateTecnologiasInput {
+	id: ID!
+	descricao: String
+}
+
+input UpdateUsuariosInput {
+	id: ID!
+	cpf: String
+	nome: String
+	email: String
+	usuariosEnderecoId: ID
+}
+
+type Usuarios {
+	id: ID!
+	cpf: String!
+	nome: String!
+	email: String!
+	endereco: Enderecos
+	createdAt: AWSDateTime!
+	updatedAt: AWSDateTime!
+	owner: String
+}
