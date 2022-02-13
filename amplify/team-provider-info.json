@@ -1,32 +1,32 @@
 {
-    "dev": {
-        "awscloudformation": {
-            "AuthRoleName": "amplify-minhaminifabrica3dap-dev-213907-authRole",
-            "UnauthRoleArn": "arn:aws:iam::941380333541:role/amplify-minhaminifabrica3dap-dev-213907-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::941380333541:role/amplify-minhaminifabrica3dap-dev-213907-authRole",
-            "Region": "us-east-1",
-            "DeploymentBucketName": "amplify-minhaminifabrica3dap-dev-213907-deployment",
-            "UnauthRoleName": "amplify-minhaminifabrica3dap-dev-213907-unauthRole",
-            "StackName": "amplify-minhaminifabrica3dap-dev-213907",
-            "StackId": "arn:aws:cloudformation:us-east-1:941380333541:stack/amplify-minhaminifabrica3dap-dev-213907/b877d5d0-8489-11ec-a40b-0ee778b48629",
-            "AmplifyAppId": "d5cy6m3zu90pq"
-        },
-        "categories": {
-            "auth": {
-                "minhaminifabrica3dap5217775b": {}
-            },
-            "function": {
-                "S3Triggere58c3113": {
-                    "deploymentBucketName": "amplify-minhaminifabrica3dap-dev-213907-deployment",
-                    "s3Key": "amplify-builds/S3Triggere58c3113-54457149306763576156-build.zip"
-                }
-            },
-            "hosting": {
-                "amplifyhosting": {
-                    "appId": "d5cy6m3zu90pq",
-                    "type": "manual"
-                }
-            }
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-minhaminifabrica3dap-dev-213907-authRole",
+      "UnauthRoleArn": "arn:aws:iam::941380333541:role/amplify-minhaminifabrica3dap-dev-213907-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::941380333541:role/amplify-minhaminifabrica3dap-dev-213907-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-minhaminifabrica3dap-dev-213907-deployment",
+      "UnauthRoleName": "amplify-minhaminifabrica3dap-dev-213907-unauthRole",
+      "StackName": "amplify-minhaminifabrica3dap-dev-213907",
+      "StackId": "arn:aws:cloudformation:us-east-1:941380333541:stack/amplify-minhaminifabrica3dap-dev-213907/b877d5d0-8489-11ec-a40b-0ee778b48629",
+      "AmplifyAppId": "d5cy6m3zu90pq"
+    },
+    "categories": {
+      "auth": {
+        "minhaminifabrica3dap5217775b": {}
+      },
+      "function": {
+        "S3Triggere58c3113": {
+          "deploymentBucketName": "amplify-minhaminifabrica3dap-dev-213907-deployment",
+          "s3Key": "amplify-builds/S3Triggere58c3113-54457149306763576156-build.zip"
         }
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d5cy6m3zu90pq",
+          "type": "manual"
+        }
+      }
     }
+  }
 }
