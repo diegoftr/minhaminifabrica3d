@@ -272,7 +272,7 @@ export class OrcamentoComponent implements OnInit {
   }
 
   isUsuario() {
-    return !this.isAdmin() && !this.isParceiro();
+    return this.authenticator.user == null ? false : !this.isAdmin() && !this.isParceiro();
   }
 
   isParceiro() {
