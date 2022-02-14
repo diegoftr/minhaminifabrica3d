@@ -117,8 +117,7 @@
                 <td colspan="2">
                     <mat-form-field [style.width.px]="850" *ngIf="!form.get('id')!.value">
                         <mat-label><span>Observação</span></mat-label>
-                        <input matInput type="string" maxlength="500" formControlName="observacao"
-                            readonly="!form.get('id').value">
+                        <input matInput type="string" maxlength="500" formControlName="observacao">
                     </mat-form-field>
                     <h2 *ngIf="form.get('id')!.value">{{form.get('observacao')!.value}}</h2>
                 </td>
@@ -223,7 +222,7 @@
     <table style="width: 100%;" *ngIf="caminhoArquivo.length > 0">
         <tr>
             <td style="text-align: center;" colspan="2">
-                <button mat-raised-button class="botao" *ngIf="isUsuario()" (click)="salvarOrcamento()">SOLICITAR
+                <button mat-raised-button class="botao" *ngIf="isUsuario() && !form.get('id')!.value" (click)="salvarOrcamento()">SOLICITAR
                     ORÇAMENTO</button>
                 <button mat-raised-button class="botao" *ngIf="!isUsuario() && !formProposta.get('id')!.value"
                     (click)="enviarProposta()">ENVIAR PROPOSTA</button>

@@ -72,4 +72,8 @@ export class AppComponent extends BaseComponent {
     this.router.navigate(['/cor']);
   }
 
+  acaoBotaoEstatisticas() {
+    this.router.navigate(['/estatisticas']);
+  }
+
 }

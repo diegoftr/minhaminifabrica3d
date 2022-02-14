@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AcabamentoComponent } from './acabamento/acabamento.component';
 import { AppComponent } from './app.component';
 import { CorComponent } from './cor/cor.component';
+import { EstatisticasComponent } from './estatisticas/estatisticas.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { MaterialComponent } from './material/material.component';
@@ -37,6 +38,9 @@ const routes: Routes = [{
 },{
   path: 'meusOrcamentos',
   component: MeusOrcamentosComponent,
+},{
+  path: 'estatisticas',
+  component: EstatisticasComponent,
 }
 ];
 

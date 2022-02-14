@@ -14,7 +14,9 @@
       <a mat-button style="color: black;" *ngIf="authenticator.route === 'authenticated'" (click)="acaoBtnLogin()">Meus
         Dados</a>
 
+        <a mat-button style="color: black;" *ngIf="isAdmin()" (click)="acaoBotaoEstatisticas()">Estatísticas</a>
         <a mat-button style="color: black;" *ngIf="isAdmin()" [matMenuTriggerFor]="menu">Administrador</a>
+        
         <mat-menu #menu="matMenu">
           <a mat-menu-item (click)="acaoBtnAcabamento()">Acabamento</a>
           <a mat-menu-item (click)="acaoBtnMaterial()">Material</a>

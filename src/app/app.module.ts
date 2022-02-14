@@ -26,6 +26,8 @@ import { LegacyAmplifyUiModule } from '@aws-amplify/ui-angular/legacy';
 import { StlModelViewerModule } from 'angular-stl-model-viewer';
 import {MatSliderModule} from '@angular/material/slider';
 import { MeusOrcamentosComponent } from './meus-orcamentos/meus-orcamentos.component';
+import { NgChartsModule } from 'ng2-charts';
+import { EstatisticasComponent } from './estatisticas/estatisticas.component';
 
 
 @NgModule({
@@ -38,7 +40,8 @@ import { MeusOrcamentosComponent } from './meus-orcamentos/meus-orcamentos.compo
     MaterialComponent,
     AcabamentoComponent,
     CorComponent,
-    MeusOrcamentosComponent
+    MeusOrcamentosComponent,
+    EstatisticasComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +50,7 @@ import { MeusOrcamentosComponent } from './meus-orcamentos/meus-orcamentos.compo
     NgxSpinnerModule,
     FormsModule,
 
+    NgChartsModule,
     MatSliderModule,
     StlModelViewerModule,
     LegacyAmplifyUiModule,
@@ -62,6 +66,7 @@ import { MeusOrcamentosComponent } from './meus-orcamentos/meus-orcamentos.compo
     MatInputModule,
     MatSelectModule,
     MatSnackBarModule,
+    NgChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
