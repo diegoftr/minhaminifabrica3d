@@ -23,6 +23,20 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   color: white;background-color: black;
 }
 
+.colorBlack {
+  color: black;
+}
+
+.matToolBar {
+  padding: 0; 
+  background-color: white; 
+  color: white;
+}
+
+.colorWhite {
+  color: white;
+}
+
 html{
     padding-left: 10%;
     padding-right: 10%;
@@ -40,10 +54,33 @@ html{
   border-collapse: collapse;
 }
 
+.colunaTabelaAzul {
+  border: 2px solid black;   
+  border-collapse: collapse;
+  background-color: #35cbfb;
+}
+
+.colunaTabelaVermelho {
+  border: 2px solid black;   
+  border-collapse: collapse;
+  background-color: red;
+}
+
 .colunaTabela {
   border: 2px solid black;   
   border-collapse: collapse;
 }
+
+.linkAzul {
+  color: blue; 
+  cursor:pointer;
+}
+
+.linkVermelho {
+  color: red; 
+  cursor:pointer;
+}
+
 
 button{
     display: block;

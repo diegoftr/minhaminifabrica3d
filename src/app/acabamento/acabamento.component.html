@@ -26,20 +26,20 @@
         <br>
         <table class="tabela">
             <tr class="linhaTabela">
-                <td class="colunaTabela" style="background-color: #35cbfb;"><b>ID</b></td>
-                <td class="colunaTabela" style="background-color: #35cbfb;"><b>Descricao</b></td>
-                <td class="colunaTabela" style="background-color: red;"></td>
+                <td class="colunaTabelaAzul"><b>ID</b></td>
+                <td class="colunaTabelaAzul"><b>Descricao</b></td>
+                <td class="colunaTabelaVermelho"></td>
             </tr>
             <tr class="linhaTabela" *ngFor="let acabamento of acabamentos; let i = index">
                 <td class="colunaTabela">
                     <a (click)="preencherAcabamento(acabamento.id)"
-                        style="color: blue; cursor:pointer;">{{acabamento.id}}</a>
+                    class="linkAzul">{{acabamento.id}}</a>
                 </td>
                 <td class="colunaTabela">
                     {{acabamento.descricao}}
                 </td>
                 <td class="colunaTabela">
-                    <a style="color: red; cursor:pointer;" (click)="excluirAcabamento(acabamento.id)"><b>X</b></a>
+                    <a class="linkVermelho" (click)="excluirAcabamento(acabamento.id)"><b>X</b></a>
                 </td>
             </tr>
         </table>

@@ -172,13 +172,13 @@
             <br>
             <table class="tabela">
                 <tr class="linhaTabela">
-                    <td class="colunaTabela" style="background-color: #35cbfb;"><b>Parceiro</b></td>
-                    <td class="colunaTabela" style="background-color: #35cbfb;"><b>Prazo</b></td>
-                    <td class="colunaTabela" style="background-color: #35cbfb;"><b>Valor</b></td>
-                    <td class="colunaTabela" style="background-color: #35cbfb;"><b>Frete</b></td>
+                    <td class="colunaTabelaAzul"><b>Parceiro</b></td>
+                    <td class="colunaTabelaAzul"><b>Prazo</b></td>
+                    <td class="colunaTabelaAzul"><b>Valor</b></td>
+                    <td class="colunaTabelaAzul"><b>Frete</b></td>
                 </tr>
                 <tr *ngFor="let proposta of propostas">
-                    <td class="colunaTabela"><a  (click)="carregarChat(proposta.responsavelProposta, proposta.id)" style="color: blue; cursor:pointer;">{{proposta.responsavelProposta}}</a></td>
+                    <td class="colunaTabela"><a  (click)="carregarChat(proposta.responsavelProposta, proposta.id)" class="linkAzul">{{proposta.responsavelProposta}}</a></td>
                     <td class="colunaTabela">{{proposta.prazo}} dias</td>
                     <td class="colunaTabela">{{formatarMoeda(proposta.valor)}}</td>
                     <td class="colunaTabela">{{formatarMoeda(proposta.frete)}}</td>
@@ -194,7 +194,7 @@
             <br>
             <table class="tabela">
                 <tr class="linhaTabela">
-                    <td class="colunaTabela" style="background-color: #35cbfb;"><b>Mensagem</b></td>
+                    <td class="colunaTabelaAzul"><b>Mensagem</b></td>
                 </tr>
                 <tr *ngFor="let chat of chats">
                     <td>{{formatarData(chat.createdAt)}} - {{chat.usuarioEnvio}}: <b>{{chat.msg}}</b></td>

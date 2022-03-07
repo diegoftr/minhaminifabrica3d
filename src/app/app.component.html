@@ -3,19 +3,19 @@
 
 <div class="cabecalho">
   <div class="App">
-    <mat-toolbar color="white" style="padding: 0; background-color: white; color: white;">
+    <mat-toolbar color="white" class="matToolBar">
       <img src="/assets/minhaminifabrica.png" />
       <span style="flex: 0.2 0.2 auto;"></span>
-      <a mat-button style="color: black;" (click)="acaoBtnInicio()">Início</a>&nbsp;
-      <a mat-button style="color: black;" *ngIf="isUsuario()" (click)="acaoBtnOrcamento()">Solicitar orçamento</a>
-      <a mat-button style="color: black;" *ngIf="isUsuario()" (click)="acaoBotaoMeusOrcamentos()">Meus orçamentos</a>
-      <a mat-button style="color: black;" *ngIf="isAdmin() || isParceiro()" (click)="acaoBotaoMeusOrcamentos()">Orçamentos</a>
+      <a mat-button class="colorBlack" (click)="acaoBtnInicio()">Início</a>&nbsp;
+      <a mat-button class="colorBlack" *ngIf="isUsuario()" (click)="acaoBtnOrcamento()">Solicitar orçamento</a>
+      <a mat-button class="colorBlack" *ngIf="isUsuario()" (click)="acaoBotaoMeusOrcamentos()">Meus orçamentos</a>
+      <a mat-button class="colorBlack" *ngIf="isAdmin() || isParceiro()" (click)="acaoBotaoMeusOrcamentos()">Orçamentos</a>
       <span style="flex: 1 1 auto;"></span>
-      <a mat-button style="color: black;" *ngIf="authenticator.route === 'authenticated'" (click)="acaoBtnLogin()">Meus
+      <a mat-button class="colorBlack" *ngIf="authenticator.route === 'authenticated'" (click)="acaoBtnLogin()">Meus
         Dados</a>
 
-        <a mat-button style="color: black;" *ngIf="isAdmin()" (click)="acaoBotaoEstatisticas()">Estatísticas</a>
-        <a mat-button style="color: black;" *ngIf="isAdmin()" [matMenuTriggerFor]="menu">Administrador</a>
+        <a mat-button class="colorBlack" *ngIf="isAdmin()" (click)="acaoBotaoEstatisticas()">Estatísticas</a>
+        <a mat-button class="colorBlack" *ngIf="isAdmin()" [matMenuTriggerFor]="menu">Administrador</a>
         
         <mat-menu #menu="matMenu">
           <a mat-menu-item (click)="acaoBtnAcabamento()">Acabamento</a>
@@ -24,10 +24,10 @@
           <a mat-menu-item (click)="acaoBtnCor()">Cor</a>
         </mat-menu>
       
-      <a mat-button style="color: black;" *ngIf="authenticator.route !== 'authenticated'"
+      <a mat-button class="colorBlack" *ngIf="authenticator.route !== 'authenticated'"
         (click)="acaoBtnLogin()">Acessar</a>
     
-      <a mat-button style="color: black;" *ngIf="authenticator.route === 'authenticated'"
+      <a mat-button class="colorBlack" *ngIf="authenticator.route === 'authenticated'"
         (click)="logout()">Logout</a>
 
     </mat-toolbar>
@@ -41,5 +41,5 @@
   </div>
 </div>
 <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" [fullScreen]="true">
-  <p style="color: white"> Carregando... </p>
+  <p class="colorWhite">Carregando... </p>
 </ngx-spinner>

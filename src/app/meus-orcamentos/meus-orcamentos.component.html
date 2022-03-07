@@ -6,27 +6,27 @@
         <br>
         <table class="tabela">
             <tr class="linhaTabela">
-                <td class="colunaTabela" style="background-color: #35cbfb;">
+                <td class="colunaTabelaAzul">
                     <b>Titulo</b>
                 </td>
-                <td class="colunaTabela" style="background-color: #35cbfb;">
+                <td class="colunaTabelaAzul">
                     <b>Usuário</b>
                 </td>
-                <td class="colunaTabela" style="background-color: #35cbfb;">
+                <td class="colunaTabelaAzul">
                     <b>Tecnologia</b>
                 </td>
-                <td class="colunaTabela" style="background-color: #35cbfb;">
+                <td class="colunaTabelaAzul">
                     <b>Material</b>
                 </td>
-                <td class="colunaTabela" style="background-color: #35cbfb;">
+                <td class="colunaTabelaAzul">
                     <b>Data Criação</b>
                 </td>
-                <td class="colunaTabela" style="background-color: red;" *ngIf="!isParceiro()">
+                <td class="colunaTabelaVermelho" *ngIf="!isParceiro()">
                 </td>
             </tr>
             <tr class="linhaTabela" *ngFor="let orcamento of orcamentos; let i = index">
                 <td class="colunaTabela">
-                    <a (click)="carregarOrcamento(orcamento.id)" style="color: blue; cursor:pointer;">{{orcamento.titulo}}</a>
+                    <a (click)="carregarOrcamento(orcamento.id)" class="linkAzul">{{orcamento.titulo}}</a>
                 </td>
                 <td class="colunaTabela">
                     {{orcamento.usuario}}
@@ -41,7 +41,7 @@
                     {{formatarData(orcamento.createdAt)}}
                 </td>
                 <td class="colunaTabela" *ngIf="!isParceiro()">
-                    <a (click)="removerOrcamento(orcamento.id)" style="color: red; cursor:pointer;">X</a>
+                    <a (click)="removerOrcamento(orcamento.id)" class="linkVermelho">X</a>
                 </td>
             </tr>
         </table>
